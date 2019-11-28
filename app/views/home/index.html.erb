@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-inverse white">
     <a class="navbar-brand" href="index.html" style="font-size:36px;font-weight:bold;color:black;">&nbsp;&nbsp; Tour Buddy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><img src="images/menu1.png" style="width:25px;height:25px;"></span>
+      <span class="navbar-toggler-icon"><%= image_tag "menu1.png" , :style=>"width:25px;height:25px;"%></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -146,7 +146,7 @@
         <div class="container">
           <h1>Paradise Tours</h1>
           <h4>
-            <img src="images/location.png" style="width:18px;height:18px;padding-bottom:1px;">
+            <%= image_tag "location.png" ,:style=>"width:18px;height:18px;padding-bottom:1px;"%>
             179/A Ablock New Muslim Town Lahore
           </h4>
           <p>
@@ -165,7 +165,7 @@
           <h1>Arranged Tours</h1>
           <div class="row">
             <div class="card" style="width:50%;">
-              <img class="card-img-top" src="sample.png" width="30px" height="200px" alt="">
+              <%= image_tag "sample.PNG", :class=>"card-img-top",:style=>"height:200px;" %>
               <div class="card-body">
                 <h4 class="card-title">Best of northern Pakistan in Summers</h4>
                 <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
@@ -174,7 +174,7 @@
               </div>
             </div>
             <div class="card" style="left:1%;width:50%;">
-              <img class="card-img-top" src="sample.png" width="30px" height="200px" alt="">
+              <%= image_tag "sample.PNG", :class=>"card-img-top",:style=>"height:200px;" %>
               <div class="card-body">
                 <h4 class="card-title">Best of northern Pakistan in Summers</h4>
                 <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
@@ -203,7 +203,7 @@
             <tr>
               <th scope="col">
                 <button class="ui facebook  big button">
-                  <i class="fab fa-facebook"></i>
+                  <i class="facebook icon"></i>
                   Facebook
                 </button>
               </th>
@@ -228,53 +228,4 @@
   </div>
 </div>
 <br/><br/><br/><br/>
-<!-- -------------------------------footer------------------------------------------------------------- -->
-<div id="foot">
-  <div style="width:100%;background-color:black;color:white;padding-top: 3%; ">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card" style="width:22rem;background-color:black;color:white;">
-            <div class="card-header" style="font-size:22px;font-weight:bold;">About Tour Buddy</div>
-            <div class="card-body">Tour Buddy is a web application that provides a platform to reduce the
-              communication gap between the tour agencies and customers to promote tourism</div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card" style="width:22rem;background-color:black;color:white;">
-            <div class="card-header" style="font-size:22px;font-weight:bold;">Contact Info</div>
-            <div class="card-body">
-              <div class="block-5 mb-5">
-                <ul class="list-unstyled">
-                  <li><img src="images/location.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; PUCIT, New Campus</li>
-                  <li><img src="images/telephone.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp;&nbsp;Phone : +92 300 4132 345</li>
-                  <li><img src="images/envelope.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp;&nbsp;Mail : tourbuddy@info.com</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card" style="width:22rem;background-color:black;color:white;">
-            <div class="card-header" style="font-size:22px;font-weight:bold;">Quick Links</div>
-            <div class="card-body">
-              <div class="block-5 mb-5">
-                <ul class="list-unstyled">
-                  <li>Home</li>
-                  <li>Group Tours</li>
-                  <li>About Us</li>
-                  <li>Sign Up</li>
-                  <li>Login</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br/>
-        <div class="card" style="width:40rem;background-color:black;color:gray;">
-          <div class="card-body">Copyrights &copy; 2019 Tour Buddy. All Rights Reserved</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
