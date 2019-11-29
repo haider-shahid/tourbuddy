@@ -1,0 +1,37 @@
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= image_tag "businessman.png" ,class:"img-fluid" %>
+    </div>
+    <div class="col-md-6 primary_font">
+      <div align="center">
+        <strong><span class="primary_color">Welcome Back ! </span></strong>Login to your Account
+      </div></br>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Email</label>
+          <%= f.email_field :email, autofocus: true,:class=>"form-control validate",placeholder: "Your Email"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Password</label>
+          <%= f.password_field :password ,:class=>"form-control validate",placeholder: "Your Password"%>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="md-form mb-4">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <%end %>
+        <div class="d-flex justify-content-center flex-wrap">
+          <%= f.submit "Login", class:"btn btn-default",style:"background-color:green;color:white;width:300px;"  %>
+          <br/>
+        </div>
+        <%= render "devise/shared/links" %>
+      <%end %>
+    </div>
+  </div>
+</div>
+<br/><br/><br/><br/>
