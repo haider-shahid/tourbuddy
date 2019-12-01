@@ -1,15 +1,16 @@
 
 <div class="container">
 
-  <div class="row">
+  <div class="row" style="margin-top: 5%;">
     <div class="col-md-6">
-      <%= image_tag "businessman.png" ,class:"img-fluid" %>
+      <%= image_tag "welcome.png" ,class:"img-fluid" %>
     </div>
     <div class="col-md-6 primary_font">
       <div align="center">
-        <strong><span class="primary_color">Welcome Back ! </span></strong>Login to your Account
+        <strong><span class="primary_color" style="font-size: larger">Welcome Back ! </span></strong><span  style="font-size:larger">Login to your Account</span>
       </div></br>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="form-group">
           <label for="formGroupExampleInput">Email</label>
           <%= f.email_field :email, autofocus: true,:class=>"form-control validate",placeholder: "Your Email"%>
