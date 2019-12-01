@@ -30,7 +30,11 @@
           <%= f.submit "Login", class:"btn btn-default",style:"background-color:green;color:white;width:300px;"  %>
           <br/>
         </div>
-        <%= render "devise/shared/links" %>
+        <div style="margin-top: 5%;">
+        <%= render "devise/shared/links"%>
+            Running an Agency?   <%= link_to "Login", new_agency_session_path,
+                                             style:"font-weight:bold;color:green;font-style:italic"%><br />
+        </div>
       <%end %>
     </div>
   </div>

@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
+  <div class="row" style="margin-top: 5%;">
     <div class="col-md-6">
       <%= image_tag "businessman.png" ,class:"img-fluid" %>
     </div>
     <div class="col-md-6 primary_font">
       <div align="center">
-        <strong><span class="primary_color">Register NOW ! </span></strong>its Free
+        <strong><span class="primary_color" style="font-size: larger">Register NOW ! </span></strong><span  style="font-size:larger">its Free</span>
       </div></br>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -33,7 +33,10 @@
           <%= f.submit "Create Account",style:"color:white;background-color:green;width:300px;",class:"btn btn-deep-orange"%>
         </div>
       <%end %>
-      <%= render "devise/shared/links" %>
+      <div style="margin-top: 5%;">
+        <%= render "devise/shared/links" %>
+        Running an Agency? <a href="#" style="font-weight:bold;color:green;font-style:italic">Register Agency</a>
+      </div>
     </div>
   </div>
 </div>

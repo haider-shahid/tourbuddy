@@ -1,1 +1,3 @@
-<h1>Welcome Mr <%=current_user.full_name%></h1>
+
+<%if current_user.present?%><h1>Welcome Mr <%=current_user.full_name%></h1><%end%>
+<%if current_agency.present?%><h1>Welcome <%=current_agency.email%></h1><%end %>
