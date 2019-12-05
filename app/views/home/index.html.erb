@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg transparent navbar-inverse sticky-top" style="z-index:9;">
     <%= link_to "Tour Buddy" , '#' ,class:"navbar-brand",style:"font-size:36px;font-weight:bold;color:white;"%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><%=image_tag "menu1.png",style: "width:25px;height:25px;" %></span>
+      <span class="navbar-toggler-icon"><%=image_tag "menu.png",style: "width:25px;height:25px;" %></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
@@ -14,7 +14,7 @@
           <%= link_to "Group Tours" , '#' ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
         </li>
         <li class="nav-item">
-          <%= link_to "About Us" , '#' ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;&nbsp;
+          <%= link_to "About Us" , home_about_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;&nbsp;
         </li>
         <%if current_user.present? || current_agency.present? %>
           <li class="nav-item">
@@ -56,14 +56,14 @@
             <%= link_to "Login" , new_user_session_path ,class:"nav-link",style:"font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;
           </li>
           <li class="nav-item">
-            <%= link_to "Sign Up" ,  new_user_registration_path ,class:"nav-link rounded",style:"font-size:18px;font-weight:bold;color:green;background-color:white;"%>
+            <%= link_to "Sign Up" ,  new_user_registration_path ,class:"nav-link rounded",style:"font-size:18px;font-weight:bold;color:green;background-color:white;display:block;"%>
           </li>
         <% end %>
       </ul>
     </div>
   </nav>
 </div>
-<!------------------------------------------Carousel----------------------------------------------------->\
+<!------------------------------------------Carousel----------------------------------------------------->
 
 <div class="bd-example">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="position:absolute;width:100%;top:0;">
@@ -186,7 +186,7 @@
         </div>
       </div>
       <div class="col-lg-4 ">
-        <div class="card" >
+        <div class="card" style="margin-bottom: 20px;">
           <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
           <div class="card-body">
             <h4 class="card-title">Naran, Kaghan and Shogran</h4>
@@ -196,7 +196,7 @@
         </div>
       </div>
       <div class="col-lg-4 ">
-        <div class="card" >
+        <div class="card" style="margin-bottom: 20px;">
           <%= image_tag "swat.jpg",class: "card-img-top", width:"30px",height:"200px"%>
           <div class="card-body">
             <h4 class="card-title">Kalam, Swat</h4>
