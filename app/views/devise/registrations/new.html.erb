@@ -34,8 +34,11 @@
         </div>
       <%end %>
       <div style="margin-top: 5%;">
-        <%= render "devise/shared/links" %>
-        Running an Agency? <a href="#" style="font-weight:bold;color:green;font-style:italic">Register Agency</a>
+        <%= render "devise/shared/links"%>
+        Running an Agency?   <%= link_to "Register Agency",  new_agency_registration_path,
+                                         style:"font-weight:bold;color:green;font-style:italic"%><br />
+
+
       </div>
     </div>
   </div>

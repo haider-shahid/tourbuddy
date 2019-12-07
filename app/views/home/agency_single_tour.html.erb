@@ -1,178 +1,28 @@
-<html>
-	<head>
-		<title>Home</title>
-		<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
-		<script type="text/javascript" src="js/jquery.js" ></script>
-		<script type="text/javascript" src="js/bootstrap.js" ></script>
-	</head>
 
-	<body>
-		<div id="head">
-				<nav class="navbar navbar-expand-lg navbar-inverse">
-				  <a class="navbar-brand" href="index.html" style="font-size:36px;font-weight:bold;color:black;">&nbsp;&nbsp; Tour Buddy</a>
-				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"><img src="images/menu1.png" style="width:25px;height:25px;"></span>
-				  </button>
-
-				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto">
-					  <li class="nav-item active">
-						<a class="nav-link" style="font-size:18px;font-weight:bold;color:black;" href="index.html">Home&nbsp;&nbsp; <span class="sr-only">(current)</span></a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" style="font-size:18px;font-weight:bold;color:black;" href="groupTours.html">Group Tours &nbsp;&nbsp;</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" style="color:black;font-size:18px;font-weight:bold;" href="about.html">About Us&nbsp;&nbsp;&nbsp;</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" style="font-size:18px;font-weight:bold;color:black;"
-							data-toggle="modal" data-target="#modalLoginForm" href="#">Login &nbsp;&nbsp;</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link rounded" style="font-size:18px;font-weight:bold;color:white;background-color:black;" 
-						data-toggle="modal" data-target="#modalRegisterForm" href="#">Sign Up</a>
-					  </li>
-					</ul>
-				  </div>
-				</nav>
-		</div>
-	<!-----------------------------------------Login Form Modal---------------------------------------------------->	
-				<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-				  aria-hidden="true">
-				  <div class="modal-dialog" role="document">
-					<div class="modal-content">
-					  <div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Welcome Back !</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						  <span aria-hidden="true">&times;</span>
-						</button>
-					  </div>
-					  <div class="modal-body mx-3">
-						<div class="col text-center">
-							<h5 >Login to your account</h5>
-						</div>
-					  
-						<div class="md-form mb-4">
-						  <i class="fas fa-envelope prefix grey-text"></i>
-						  <input type="email" id="defaultForm-email" class="form-control validate" placeholder="Your email">
-						</div>
-
-						<div class="md-form mb-4">
-						  <i class="fas fa-lock prefix grey-text"></i>
-						  <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="Your password">
-						</div>
-
-						<div class="md-form mb-4">
-							<input type="checkbox" name="remember" value="remember" checked> Remember Me
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="#" style="color:green;font-style:italic">Forgotten password?</a>
-						</div>
-						
-					  </div>
-					  <div class="modal-footer d-flex justify-content-center flex-wrap">
-						&nbsp;&nbsp;<button class="btn btn-default" style="background-color:green;color:white;width:300px;">Login</button>
-						<br/>
-						<h4>----------------- OR -----------------</h4>
-						<br/>
-						<button class="btn btn-default" style="background-color:#43BFC7;color:white;width:300px;">Sign Up</button>
-					  </div>
-					</div>
-				  </div>
-				</div>
-	<!--------------------------------------Sign Up Modal Form----------------------------------------------->
-				
-				<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-				  aria-hidden="true">
-				  <div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-					  <div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Register</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						  <span aria-hidden="true">&times;</span>
-						</button>
-					  </div>
-					  <div class="modal-body mx-3">
-						<div class="col text-center">
-							<h5 >Register now its free !</h5>
-						</div>
-						<div class="md-form mb-4">
-						  <i class="fas fa-user prefix grey-text"></i>
-						  <input type="text" id="orangeForm-name" class="form-control validate" placeholder="Name">
-						</div>
-						<div class="md-form mb-4">
-						  <i class="fas fa-user prefix grey-text"></i>
-						  <input type="text" id="orangeForm-name" class="form-control validate" placeholder="User Name">
-						</div>
-						<div class="md-form mb-4">
-						  <i class="fas fa-envelope prefix grey-text"></i>
-						  <input type="email" id="orangeForm-email" class="form-control validate" placeholder="Email">
-						</div>
-
-						<div class="md-form mb-4">
-						  <i class="fas fa-lock prefix grey-text"></i>
-						  <input type="password" id="orangeForm-pass" class="form-control validate" placeholder="Password">
-						</div>
-						
-						<div class="md-form mb-4">
-						  <i class="fas fa-lock prefix grey-text"></i>
-						  <input type="password" id="orangeForm-pass" class="form-control validate" placeholder="Confirm Password">
-						</div>
-
-					  </div>
-					  <div class="modal-footer d-flex justify-content-start flex-wrap">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-deep-orange" style="color:white;background-color:green;">Create Account</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;
-						<a href="#" style="font-weight:bold;color:#43BFC7;font-style:italic">Already have account? Login</a>
-						<span style="font-weight:bold;color:#F87217;">|</span>
-						<a href="#" style="font-weight:bold;color:green;font-style:italic">Register Agency</a>
-					  </div>
-					</div>
-				  </div>
-				</div>
-		
 	<!------------------------------------Body--------------------------------------------------------------->
 					<br/><br/>
-				
-					<div class="container">										
-						<div class="row">
+
+					<div class="container">
+            <h1><%=@tour.title %></h1><br/>
+            <div class="row">
 							<div class="card" style="left:0px;width:45rem;">
-							  <img class="card-img-top" src="sample.png" height="300px" alt="">
+                <%= image_tag "shangrila.jpg",class: "card-img-top", height:"300px"%>
 							</div>
 						</div>
 						
 						<div class="row">
 							<div class="card" style="left:0px;width:26rem;border-color:white;">
 							  <div class="card-body">
-								<h4 class="card-title"><img src="images/umbrella.png" style="width:20px;height:20px;padding-bottom:1px;background-color:yellow;">&nbsp; Description</h4>
+								<h4 class="card-title"><%= image_tag "umbrella.png",style: "width:20px;height:20px;padding-bottom:1px;background-color:yellow;"%>&nbsp; Description</h4>
 								<p class="card-text" style="font-size:16px;"><span style="font-weight:bold;">Destination:</span> 
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Beirut</em> <br/>
-								<span style="font-weight:bold;">Duration:</span> 
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>5 Days</em>
+								<em style="padding-left: 11em;"><%=@tour.destination %></em> <br/>
+								<span style="font-weight:bold;">Duration:</span><em style="padding-left: 12.4em;"><%=@tour.duration %> Days</em>
 								<br/>
-								<span style="font-weight:bold;">Package Price:</span> 
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>PKR 12000</em>
+								<span style="font-weight:bold;">Package Price:</span><em style="padding-left: 8.4em;">PKR <%=@tour.budget %></em>
 								<br/>
-								<span style="font-weight:bold;">For Booking</span> 
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>92 300 2314 345</em></p>
+                 <span style="font-weight:bold;">Tour Agency:</span><em style="padding-left: 7.5em;"><%=@tour.agency.title %></em>
+                 <br/>
+								<span style="font-weight:bold;">For Booking</span><em style="padding-left: 8em;"><%=@tour.agency.phone_num %></em></p>
 								
 							  </div>
 							</div>
@@ -184,13 +34,13 @@
 							  <div class="card-body" style="padding-left:0px;">
 								<h4 class="card-title" style="background-color:#2B3856;color:white;padding:5px;" >Package Inclusions</h4>
 								<p class="card-text" style="color:black;font-size:16px;" >
-								
-									<img src="images/success.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; All inclusive package <br/>
-									<img src="images/success.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; Air tickets emirates airline visa <br/>
-									<img src="images/success.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; Luxury transport <br/>
-									<img src="images/success.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; All tours <br/>
-									<img src="images/success.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; All meals at fine dining restaurants <br/>
-									<img src="images/success.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; 4 star luxury hotel in downtown <br/>
+
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; All inclusive package <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; Air tickets emirates airline visa <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; Luxury transport <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; All tours <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; All meals at fine dining restaurants <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; 4 star luxury hotel in downtown <br/>
 								
 								</p>
 							  </div>
@@ -202,82 +52,31 @@
 							  <div class="card-body" style="padding-left:0px;">
 								<h4 class="card-title" style="background-color:#2B3856;color:white;padding:5px;" >Full Plan</h4>
 								<p class="card-text" style="color:black;font-size:16px;border:1px solid black;" >
-									
-									<br/><br/><br/><br/><br/><br/><br/><br/>
+
+                  <%=@tour.full_plan %><br/><br/><br/><br/>
 								
 								</p>
 							  </div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="card" style="left;border-color:white;">
-								<div style="font-weight:bold;font-size:18px;">Departure Date : 25 October 2019</div>
+							<div class="card" style="border-color:white;">
+								<div style="font-weight:bold;font-size:18px;">Departure Date : <%=@tour.departure_date %></div>
 							</div>
 						</div>
-						
-						<div class="row col-md-12" style="padding-top: 3%;">
-							<div class="col-md-2">
-								<button class="btn btn-danger">DELETE EVENT</button>
-							</div>
-							<div class="col-md-2 offset-md-1">
-								<button class="btn btn-info" style="margin-top: 3%;">EDIT EVENT</button>
-							</div>
-						</div>
+						<% if current_agency.present?
+                 if @tour.agency.id.eql? current_agency.id  %>
+                <div class="row col-md-12" style="padding-top: 3%;">
+                  <div class="col-md-2">
+                    <button class="btn btn-danger">DELETE EVENT</button>
+                  </div>
+                  <div class="col-md-2 offset-md-1">
+                    <button class="btn btn-info" style="margin-top: 3%;">EDIT EVENT</button>
+                  </div>
+                </div>
+            <%   end
+               end
+            %>
+
 					</div>
 					<br/><br/>
-			
-	
-	
-	<!-- -------------------------------footer------------------------------------------------------------- -->	
-		<div id="foot">
-			<div style="width:100%;background-color:black;color:white;padding-top: 3%; ">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card" style="width:22rem;background-color:black;color:white;">
-							  <div class="card-header" style="font-size:22px;font-weight:bold;">About Tour Buddy</div>
-							  <div class="card-body">Tour Buddy is a web application that provides a platform to reduce the 
-													 communication gap between the tour agencies and customers to promote tourism</div> 
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card" style="width:22rem;background-color:black;color:white;">
-							  <div class="card-header" style="font-size:22px;font-weight:bold;">Contact Info</div>
-							  <div class="card-body">
-								<div class="block-5 mb-5">
-								  <ul class="list-unstyled">
-									<li><img src="images/location.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp; PUCIT, New Campus</li>
-									<li><img src="images/telephone.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp;&nbsp;Phone : +92 300 4132 345</li>
-									<li><img src="images/envelope.png" style="width:18px;height:18px;padding-bottom:1px;">&nbsp;&nbsp;&nbsp;Mail : tourbuddy@info.com</li>
-								  </ul>
-								</div>
-							  </div> 
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card" style="width:22rem;background-color:black;color:white;">
-							  <div class="card-header" style="font-size:22px;font-weight:bold;">Quick Links</div>
-							  <div class="card-body">
-								<div class="block-5 mb-5">
-								  <ul class="list-unstyled">
-									<li>Home</li>
-									<li>Group Tours</li>
-									<li>About Us</li>
-									<li>Sign Up</li>
-									<li>Login</li>
-								  </ul>
-								</div>
-							  </div> 
-							</div> 
-						</div>
-						<br/>
-						<div class="card" style="width:40rem;background-color:black;color:gray;">
-						  <div class="card-body">Copyrights &copy; 2019 Tour Buddy. All Rights Reserved</div> 
-						</div>
-					</div>										
-				</div>
-			</div>			
-		</div>
-	</body>
-
-</html>

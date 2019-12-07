@@ -1,3 +1,4 @@
+
 <!------------------------------------------Navbar----------------------------------------------------->
 <div id="head">
   <nav class="navbar navbar-expand-lg transparent navbar-inverse sticky-top" style="z-index:9;">
@@ -11,7 +12,7 @@
           <%= link_to "Home",'#' ,class:"nav-link"  ,style:"font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp; <span class="sr-only">(current)</span>
         </li>
         <li class="nav-item">
-          <%= link_to "Group Tours" , '#' ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
+          <%= link_to "Group Tours" , groupTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
         </li>
         <li class="nav-item">
           <%= link_to "About Us" , home_about_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;&nbsp;
@@ -21,6 +22,7 @@
             <%=image_tag "avatar.png", class: "rounded-circle float right",width: 30,height: 30%>
           </li>
           <% if current_user%>
+            <%session[:current_user_id] = current_user.id %>
             <li class="nav-item">
               <div class="ui dropdown">
                 <div class="nav-link" style="font-size:18px;font-weight:bold;color:white;">
@@ -36,6 +38,7 @@
               </div>
             </li>
           <% else %>
+            <%session[:current_agency_id] = current_agency.id %>
             <li class="nav-item">
               <div class="ui dropdown">
                 <div class="nav-link" style="font-size:18px;font-weight:bold;color:white;">
@@ -43,7 +46,9 @@
                 </div>
                 <div class="menu">
                   <div class="item">
-                    <i class="cog icon"></i>Agency Profile</div>
+                    <i class="plus icon"></i><%= link_to('Add New Event', agency_new_event_path) %></div>
+                  <div class="item">
+                    <i class="cog icon"></i><%= link_to('Agency Profile', agency_profile_path) %></div>
                   <div class="divider"></div>
                   <div class="item">
                     <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_agency_session_path, method: :delete,style: "color:black;") %></div>
