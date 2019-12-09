@@ -3,9 +3,9 @@
 					<br/><br/>
 				
 					<div class="container">
-						<form name="new_event" id="new_event" action="add_agency_event" method="get" style="display: inline">
+						<form action="save_edit_agency_changes" method="get" style="display: inline">
 							<div class="row col-md-12">						
-								<h3>Add New Event</h3>
+								<h3>Edit Your Event</h3>
 								<br/><br/>						
 							</div>						
 							<div class="row col-md-12">	
@@ -26,30 +26,30 @@
 							<div class="row col-md-11">
 								<h5 class="col-md-2">Title</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" name="title" id="title" required>
+									<input type="text" class="form-control" value="<%=@tour.title %>" name="title" id="title" required>
 								</div>
 
 								<h5 class="col-md-2">Destination</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" name="destination" required>
+									<input type="text" class="form-control" value="<%=@tour.destination %>" name="destination" required>
 								</div>
 							</div>	
 							<br/>								
 							<div class="row col-md-11">
 								<h5 class="col-md-3">Departure Date</h5>										
 								<div class="col-md-3">
-									<input type="date" class="form-control" name="date" required>
+									<input type="date" class="form-control" value="<%=@tour.departure_date %>" name="date" required>
 								</div>
 								<h5 class="col-md-2">Package Price</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" name="price" required>
+									<input type="text" class="form-control" value="<%=@tour.budget %>" name="price" required>
 								</div>
 							</div>		
 							<br/>
 							<div class="row col-md-11">
 								<h5 class="col-md-2">Duration(Days)</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" name="days" required>
+									<input type="text" class="form-control" value="<%=@tour.duration %>" name="days" required>
 								</div>									
 							</div>	
 							<br/>
@@ -78,11 +78,11 @@
 							<br/>	
 
 							<div class="row col-md-11">								
-									<textarea id="full_plan" name="full_plan" rows="10" cols="60" required></textarea>
+									<textarea id="full_plan" name="full_plan" rows="10" cols="60" required><%=@tour.full_plan %></textarea>
 							</div>							
 							<br/>
-
-							<button type="submit" class="ui green button medium">Create</button>													
+              <input type="hidden" value="<%=@tour.id %>" id="tour_id" name="tour_id" />
+							<button type="submit" class="ui green button medium">Save Changes</button>
 						</form>	
 					</div>
 					

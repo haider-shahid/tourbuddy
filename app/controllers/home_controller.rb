@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
   end
 
+  #######################################################  Agency Controllers  ################################3
+
   def agency_profile
     @agency = Agency.find(session[:current_agency_id])
   end
@@ -27,12 +29,51 @@ class HomeController < ApplicationController
 
   end
 
+  def add_agency_event
+    tour = Tour.new
+    tour.title = params[:title]
+    tour.agency = Agency.find(current_agency.id)
+    tour.departure_date = params[:date]
+    tour.duration = params[:days]
+    tour.budget = params[:price]
+    tour.destination = params[:destination]
+    tour.full_plan = params[:full_plan]
+    tour.image_path = "img1.jpg"
+    tour.save
+    redirect_to groupTours_path
+  end
+
   def edit_agency_profile
     @agency = Agency.find(session[:current_agency_id])
   end
 
+  def edit_agency_event
+    @tour = Tour.find(params[:tour_id])
+  end
+
+  def save_edit_agency_changes
+    tour = Tour.find(params[:tour_id])
+    tour.title = params[:title]
+    tour.agency = Agency.find(current_agency.id)
+    tour.departure_date = params[:date]
+    tour.duration = params[:days]
+    tour.budget = params[:price]
+    tour.destination = params[:destination]
+    tour.full_plan = params[:full_plan]
+    tour.image_path = "img1.jpg"
+    tour.save
+
+    redirect_to all_agency_tours_path
+  end
+
+  def delete_agency_tour
+    tour = Tour.find(params[:tour_id])
+    tour.delete
+    redirect_to all_agency_tours_path
+  end
+
   def edit_agency_info
-    agency = Agency.find_by_email(session[:current_agency_id])
+    agency = Agency.find(session[:current_agency_id])
     title = agency.title
     email = agency.email
     num = agency.phone_num

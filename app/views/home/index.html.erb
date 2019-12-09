@@ -15,6 +15,9 @@
           <%= link_to "Group Tours" , groupTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
         </li>
         <li class="nav-item">
+          <%= link_to "Customised Tours" , customizedTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
+        </li>
+        <li class="nav-item">
           <%= link_to "About Us" , home_about_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;&nbsp;
         </li>
         <%if current_user.present? || current_agency.present? %>
@@ -30,7 +33,9 @@
                 </div>
                 <div class="menu">
                   <div class="item">
-                    <i class="cog icon"></i> Settings</div>
+                    <i class="plus icon"></i><%= link_to('Request Customized Event', user_new_event_path) %></div>
+                  <div class="item">
+                    <i class="cog icon"></i><%= link_to('User Profile', user_profile_path) %></div>
                   <div class="divider"></div>
                   <div class="item">
                     <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_user_session_path, method: :delete,style: "color:black;") %></div>
@@ -125,47 +130,71 @@
 %>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-4 ">
-      <div class="card" style="margin-bottom: 20px;">
-        <%= image_tag "sample.PNG",class: "card-img-top", width:"30px",height:"200px"%>
-        <div class="card-body">
-          <h4 class="card-title">Best of northern Pakistan in Summers</h4>
-          <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
-            Meals Breakfast Lunch Dinner Complete Transportation &amp Tour Guide</p>
-          <button href="#" class="rounded" style="border:1px solid #9F000F;color:#9F000F;background-color:white;" >9 Days</button>
+  <%if Tour.first
+      tour = Tour.first
+  %>
+    <div class="row">
+      <div class="col-lg-4 ">
+        <div class="card" style="margin-bottom: 20px;">
+          <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+          <div class="card-body">
+            <h4 class="card-title"><%=tour.title %></h4>
+            <p class="card-text">Destination : <%=tour.destination %>
+              <br/>Departure : <%=tour.departure_date %>
+              <br/>Budget      : <%=tour.budget %> PKR</p>
+            <form action="agency_single_tour" method="get" style="display: inline">
+              <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+              <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-4 ">
-      <div class="card" >
-        <%= image_tag "sample.PNG",class: "card-img-top", width:"30px",height:"200px"%>
-        <div class="card-body">
-          <h4 class="card-title">Best of northern Pakistan in Summers</h4>
-          <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
-            Meals Breakfast Lunch Dinner Complete Transportation &amp Tour Guide</p>
-          <button href="#" class="rounded" style="border:1px solid #9F000F;color:#9F000F;background-color:white;" >9 Days</button>
+      <%if Tour.second
+          tour = Tour.second
+      %>
+        <div class="col-lg-4 ">
+          <div class="card" style="margin-bottom: 20px;">
+            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=tour.title %></h4>
+              <p class="card-text">Destination : <%=tour.destination %>
+                <br/>Departure : <%=tour.departure_date %>
+                <br/>Budget      : <%=tour.budget %> PKR</p>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-4 ">
-      <div class="card" >
-        <%= image_tag "sample.PNG",class: "card-img-top", width:"30px",height:"200px"%>
-        <div class="card-body">
-          <h4 class="card-title">Best of northern Pakistan in Summers</h4>
-          <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
-            Meals Breakfast Lunch Dinner Complete Transportation &amp Tour Guide</p>
-          <button href="#" class="rounded" style="border:1px solid #9F000F;color:#9F000F;background-color:white;" >9 Days</button>
+      <%end %>
+      <%if Tour.third
+          tour = Tour.third
+      %>
+        <div class="col-lg-4 ">
+          <div class="card" style="margin-bottom: 20px;">
+            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=tour.title %></h4>
+              <p class="card-text">Destination : <%=tour.destination %>
+                <br/>Departure : <%=tour.departure_date %>
+                <br/>Budget      : <%=tour.budget %> PKR</p>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
+      <%end %>
     </div>
-  </div>
+    <br/><br/>
+    <div class="col text-center">
+      <%= link_to "Show More" , groupTours_path ,class:"btn btn-default" ,style: "font-weight:bold;border:1px solid green;color:green;background-color:white;width:250px;"%>
+    </div>
+  <%end %>
 </div>
-<br/><br/>
-<div class="col text-center">
-  <button href="#" class="btn btn-default" style="font-weight:bold;border:1px solid green;color:green;background-color:white;width:250px;" >Show More</button>
-</div>
-
+<!----------------------------------------------------------------------------------------->
 
 <br/>
 <!------------------------------------Container------------------------------------------------------------>

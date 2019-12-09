@@ -4,11 +4,6 @@
 
 					<div class="container">
             <h1><%=@tour.title %></h1><br/>
-            <div class="row">
-							<div class="card" style="left:0px;width:45rem;">
-                <%= image_tag "shangrila.jpg",class: "card-img-top", height:"300px"%>
-							</div>
-						</div>
 						
 						<div class="row">
 							<div class="card" style="left:0px;width:26rem;border-color:white;">
@@ -20,9 +15,9 @@
 								<br/>
 								<span style="font-weight:bold;">Package Price:</span><em style="padding-left: 8.4em;">PKR <%=@tour.budget %></em>
 								<br/>
-                 <span style="font-weight:bold;">Tour Agency:</span><em style="padding-left: 7.5em;"><%=@tour.agency.title %></em>
+                 <span style="font-weight:bold;">User Name:</span><em style="padding-left: 7.5em;"><%=@tour.user.full_name %></em>
                  <br/>
-								<span style="font-weight:bold;">For Booking</span><em style="padding-left: 8em;"><%=@tour.agency.phone_num %></em></p>
+								</p>
 								
 							  </div>
 							</div>
@@ -64,17 +59,17 @@
 								<div style="font-weight:bold;font-size:18px;">Departure Date : <%=@tour.departure_date %></div>
 							</div>
 						</div>
-						<% if current_agency.present?
-                 if @tour.agency.id.eql? current_agency.id  %>
+						<% if current_user.present?
+                 if @tour.user.id.eql? current_user.id  %>
                 <div class="row col-md-12" style="padding-top: 3%;">
                   <div class="col-md-2">
-                    <form action="delete_agency_tour" method="get" style="display: inline">
+                    <form action="delete_user_tour" method="get" style="display: inline">
                       <input type="hidden" value="<%=@tour.id %>" id="tour_id" name="tour_id" />
                       <input  type="submit" value="Delete Event" class="btn btn-danger" />
                     </form>
                   </div>
                   <div class="col-md-2 offset-md-1">
-                    <form action="edit_agency_event" method="get" style="display: inline">
+                    <form action="edit_user_event" method="get" style="display: inline">
                       <input type="hidden" value="<%=@tour.id %>" id="tour_id" name="tour_id" />
                       <input  type="submit" value="Edit Event" class="btn btn-info" style="margin-top: 3%;"/>
                     </form>

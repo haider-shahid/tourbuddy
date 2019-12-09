@@ -1,0 +1,71 @@
+
+	<!------------------------------------Body--------------------------------------------------------------->
+					<br/><br/>				
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="sidenav">
+                  <%= link_to "My Customized Tours" , all_user_tours_path %>
+                  <%= link_to "Edit Profile" , edit_user_profile_path %>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="my-card">
+									<div class="container">						
+	    								<h2>Information Settings</h2>
+                   <form action="edit_user_info" method="get" style="display: inline">
+									<div class="form-group">
+										<label for="formGroupExampleInput">Email</label>
+										<input type="email" class="form-control" value="" name="edit_email" id="edit_email" placeholder="Email">
+									</div>									
+
+									<div class="form-group">
+										<label for="formGroupExampleInput2">Full Name</label>
+										<input type="text" class="form-control" value="" name="edit_name" id="edit_name" placeholder="Full Name">
+									</div>
+
+									<div class="form-group row">
+										<div class="col-md-12">
+											<button type="submit" class="ui green button ">Save Changes</button>
+										</div>
+									</div>
+								</form>				
+							    	</div>
+								</div>
+							</div>							
+						</div>						
+					</div>
+    <!------------------------------------------------------------------------------------------->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="">
+
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="my-card">
+                  <div class="container">
+                    <h2>Password Settings</h2>
+                    <form action="edit_user_password" method="get" style="display: inline">
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">New Password</label>
+                        <input type="password" class="form-control" value="" name="edit_new_password" id="edit_new_password" placeholder="New Password here">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">Confirm New Password</label>
+                        <input type="password" class="form-control" value="" name="edit_confirm_password" id="edit_confirm_password" placeholder="Confirm New Passoword here">
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12">
+                          <button type="submit" class="ui green button ">Save Changes</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+					<br/><br/><br/><br/>
+	<!-- -------------------------------footer------------------------------------------------------------- -->	
