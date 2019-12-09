@@ -1,0 +1,88 @@
+
+	<!------------------------------------Body--------------------------------------------------------------->
+					<br/><br/>
+
+					<div class="container">
+            <h1><%=@tour.title %></h1><br/>
+            <div class="row">
+							<div class="card" style="left:0px;width:45rem;">
+                <%= image_tag "shangrila.jpg",class: "card-img-top", height:"300px"%>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="card" style="left:0px;width:26rem;border-color:white;">
+							  <div class="card-body">
+								<h4 class="card-title"><%= image_tag "umbrella.png",style: "width:20px;height:20px;padding-bottom:1px;background-color:yellow;"%>&nbsp; Description</h4>
+								<p class="card-text" style="font-size:16px;"><span style="font-weight:bold;">Destination:</span> 
+								<em style="padding-left: 11em;"><%=@tour.destination %></em> <br/>
+								<span style="font-weight:bold;">Duration:</span><em style="padding-left: 12.4em;"><%=@tour.duration %> Days</em>
+								<br/>
+								<span style="font-weight:bold;">Package Price:</span><em style="padding-left: 8.4em;">PKR <%=@tour.budget %></em>
+								<br/>
+                 <span style="font-weight:bold;">Tour Agency:</span><em style="padding-left: 7.5em;"><%=@tour.agency.title %></em>
+                 <br/>
+								<span style="font-weight:bold;">For Booking</span><em style="padding-left: 8em;"><%=@tour.agency.phone_num %></em></p>
+								
+							  </div>
+							</div>
+						</div>
+						
+						<div class="row">
+							
+							<div class="card" style="left:0px;width:46rem;border-color:white;">
+							  <div class="card-body" style="padding-left:0px;">
+								<h4 class="card-title" style="background-color:#2B3856;color:white;padding:5px;" >Package Inclusions</h4>
+								<p class="card-text" style="color:black;font-size:16px;" >
+
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; All inclusive package <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; Air tickets emirates airline visa <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; Luxury transport <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; All tours <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; All meals at fine dining restaurants <br/>
+                  <%= image_tag "success.png",style: "width:18px;height:18px;padding-bottom:1px;"%>&nbsp;&nbsp; 4 star luxury hotel in downtown <br/>
+								
+								</p>
+							  </div>
+							</div>
+						</div>
+						<div class="row">
+							
+							<div class="card" style="left:0px;width:46rem;border-color:white;">
+							  <div class="card-body" style="padding-left:0px;">
+								<h4 class="card-title" style="background-color:#2B3856;color:white;padding:5px;" >Full Plan</h4>
+								<p class="card-text" style="color:black;font-size:16px;border:1px solid black;" >
+
+                  <%=@tour.full_plan %><br/><br/><br/><br/>
+								
+								</p>
+							  </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="card" style="border-color:white;">
+								<div style="font-weight:bold;font-size:18px;">Departure Date : <%=@tour.departure_date %></div>
+							</div>
+						</div>
+						<% if current_agency.present?
+                 if @tour.agency.id.eql? current_agency.id  %>
+                <div class="row col-md-12" style="padding-top: 3%;">
+                  <div class="col-md-2">
+                    <form action="delete_agency_tour" method="get" style="display: inline">
+                      <input type="hidden" value="<%=@tour.id %>" id="tour_id" name="tour_id" />
+                      <input  type="submit" value="Delete Event" class="btn btn-danger" />
+                    </form>
+                  </div>
+                  <div class="col-md-2 offset-md-1">
+                    <form action="edit_agency_event" method="get" style="display: inline">
+                      <input type="hidden" value="<%=@tour.id %>" id="tour_id" name="tour_id" />
+                      <input  type="submit" value="Edit Event" class="btn btn-info" style="margin-top: 3%;"/>
+                    </form>
+                  </div>
+                </div>
+            <%   end
+               end
+            %>
+
+					</div>
+					<br/><br/>

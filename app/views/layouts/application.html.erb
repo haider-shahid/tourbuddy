@@ -9,7 +9,23 @@
   </head>
 
   <body>
-    <%= yield %>
+  <%= render "shared/navbar" unless @disable_nav %>
+<!--<center>
+  <%#if notice.present? || alert.present?%>
+    <div class="ui compact message">
+      <%#if notice %>
+        <div class="header">
+          <%#= notice %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="close icon"  style="float: right;cursor: pointer;"></i>
+        </div>
+      <%#end %>
+      <%#if alert.present?%>
+        <div class="header"><%#= alert %>&nbsp;&nbsp;&nbsp;&nbsp;<i class="close icon" style="float: right;cursor: pointer;"></i></div>
+      <%#end %>
+    </div>
+  <%#end %>
+</center>-->
+  <%= yield %>
   <%= render "shared/footer" %>
   </body>
 

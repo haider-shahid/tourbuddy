@@ -1,231 +1,245 @@
-<div id="head">
-  <nav class="navbar navbar-expand-lg navbar-inverse white">
-    <a class="navbar-brand" href="index.html" style="font-size:36px;font-weight:bold;color:black;">&nbsp;&nbsp; Tour Buddy</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><%= image_tag "menu1.png" , :style=>"width:25px;height:25px;"%></span>
-    </button>
 
+<!------------------------------------------Navbar----------------------------------------------------->
+<div id="head">
+  <nav class="navbar navbar-expand-lg transparent navbar-inverse sticky-top" style="z-index:9;">
+    <%= link_to "Tour Buddy" , '#' ,class:"navbar-brand",style:"font-size:36px;font-weight:bold;color:white;"%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><%=image_tag "menu.png",style: "width:25px;height:25px;" %></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" style="font-size:18px;font-weight:bold;color:black;" href="index.html">Home&nbsp;&nbsp; <span class="sr-only">(current)</span></a>
+          <%= link_to "Home",'#' ,class:"nav-link"  ,style:"font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp; <span class="sr-only">(current)</span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size:18px;font-weight:bold;color:black;" href="groupTours.html">Group Tours &nbsp;&nbsp;</a>
+          <%= link_to "Group Tours" , groupTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="color:black;font-size:18px;font-weight:bold;" href="about.html">About Us&nbsp;&nbsp;&nbsp;</a>
+          <%= link_to "Customised Tours" , customizedTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size:18px;font-weight:bold;color:black;"
-             data-toggle="modal" data-target="#modalLoginForm" href="#">Login &nbsp;&nbsp;</a>
+          <%= link_to "About Us" , home_about_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;&nbsp;
         </li>
-        <li class="nav-item">
-          <a class="nav-link rounded" style="font-size:18px;font-weight:bold;color:white;background-color:black;"
-             data-toggle="modal" data-target="#modalRegisterForm" href="#">Sign Up</a>
-        </li>
+        <%if current_user.present? || current_agency.present? %>
+          <li class="nav-item">
+            <%=image_tag "avatar.png", class: "rounded-circle float right",width: 30,height: 30%>
+          </li>
+          <% if current_user%>
+            <%session[:current_user_id] = current_user.id %>
+            <li class="nav-item">
+              <div class="ui dropdown">
+                <div class="nav-link" style="font-size:18px;font-weight:bold;color:white;">
+                  <%=current_user.full_name%>
+                </div>
+                <div class="menu">
+                  <div class="item">
+                    <i class="plus icon"></i><%= link_to('Request Customized Event', user_new_event_path) %></div>
+                  <div class="item">
+                    <i class="cog icon"></i><%= link_to('User Profile', user_profile_path) %></div>
+                  <div class="divider"></div>
+                  <div class="item">
+                    <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_user_session_path, method: :delete,style: "color:black;") %></div>
+                </div>
+              </div>
+            </li>
+          <% else %>
+            <%session[:current_agency_id] = current_agency.id %>
+            <li class="nav-item">
+              <div class="ui dropdown">
+                <div class="nav-link" style="font-size:18px;font-weight:bold;color:white;">
+                  <%=current_agency.email%>
+                </div>
+                <div class="menu">
+                  <div class="item">
+                    <i class="plus icon"></i><%= link_to('Add New Event', agency_new_event_path) %></div>
+                  <div class="item">
+                    <i class="cog icon"></i><%= link_to('Agency Profile', agency_profile_path) %></div>
+                  <div class="divider"></div>
+                  <div class="item">
+                    <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_agency_session_path, method: :delete,style: "color:black;") %></div>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        <%else %>
+          <li class="nav-item">
+            <%= link_to "Login" , new_user_session_path ,class:"nav-link",style:"font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up" ,  new_user_registration_path ,class:"nav-link rounded",style:"font-size:18px;font-weight:bold;color:green;background-color:white;display:block;"%>
+          </li>
+        <% end %>
       </ul>
     </div>
   </nav>
 </div>
-<!-----------------------------------------Login Form Modal---------------------------------------------------->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Welcome Back !</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<!------------------------------------------Carousel----------------------------------------------------->
+
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="position:absolute;width:100%;top:0;">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="height: 600px;">
+        <%= image_tag "img1.jpg",style: "position: absolute;top: 0;left: 0;min-height: 600px;" ,class: "d-block w-100"%>
+        <div class="carousel-caption d-none d-md-block" style="z-index:10;text-align:center;top:70%;bottom:auto;">
+          <h5>Love where you're going</h5>
+          <p>Book experiences you will want to tell the world about</p>
+          <button class="rounded" style="width:150px;font-size:18px;font-weight:bold;color:#CD7F32;background-color:white;">Get Started</button>
+        </div>
       </div>
-      <div class="modal-body mx-3">
-        <div class="col text-center">
-          <h5 >Login to your account</h5>
+      <div class="carousel-item" style="height: 600px;">
+        <%= image_tag "img2.jpg",style: "position: absolute;top: 0;left: 0;min-height: 600px;" ,class: "d-block w-100"%>
+        <div class="carousel-caption d-none d-md-block" style="z-index:10;text-align:center;top:70%;bottom:auto;">
+          <h5>Love where you're going</h5>
+          <p>Book experiences you will want to tell the world about</p>
+          <button class="rounded" style="width:150px;font-size:18px;font-weight:bold;color:#483C32;background-color:white;">Get Started</button>
         </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="defaultForm-email" class="form-control validate" placeholder="Your email">
-        </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="Your password">
-        </div>
-
-        <div class="md-form mb-4">
-          <input type="checkbox" name="remember" value="remember" checked> Remember Me
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" style="color:green;font-style:italic">Forgotten password?</a>
-        </div>
-
       </div>
-      <div class="modal-footer d-flex justify-content-center flex-wrap">
-        &nbsp;&nbsp;<button class="btn btn-default" style="background-color:green;color:white;width:300px;">Login</button>
-        <br/>
-        <h4>----------------- OR -----------------</h4>
-        <br/>
-        <button class="btn btn-default" style="background-color:#43BFC7;color:white;width:300px;">Sign Up</button>
+      <div class="carousel-item" style="height: 600px;">
+        <%= image_tag "img3.jpg",style: "position: absolute;top: 0;left: 0;min-height: 600px;" ,class: "d-block w-100"%>
+        <div class="carousel-caption d-none d-md-block" style="z-index:10;text-align:center;top:30%;left:55%;bottom:auto;">
+          <h5>Love where you're going</h5>
+          <p>Book experiences you will want to tell the world about</p>
+          <button class="rounded" style="width:150px;font-size:18px;font-weight:bold;color:#2B65EC;background-color:white;">Get Started</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<!--------------------------------------Sign Up Modal Form----------------------------------------------->
-
-<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Register</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="col text-center">
-          <h5 >Register now its free !</h5>
-        </div>
-        <div class="md-form mb-4">
-          <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate" placeholder="Name">
-        </div>
-        <div class="md-form mb-4">
-          <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate" placeholder="User Name">
-        </div>
-        <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="orangeForm-email" class="form-control validate" placeholder="Email">
-        </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate" placeholder="Password">
-        </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate" placeholder="Confirm Password">
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-start flex-wrap">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="btn btn-deep-orange" style="color:white;background-color:green;">Create Account</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;
-        <a href="#" style="font-weight:bold;color:#43BFC7;font-style:italic">Already have account? Login</a>
-        <span style="font-weight:bold;color:#F87217;">|</span>
-        <a href="#" style="font-weight:bold;color:green;font-style:italic">Register Agency</a>
-      </div>
-    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
 </div>
 
-<!------------------------------------Body--------------------------------------------------------------->
-<br/><br/>
+<!-- ------------------------------------Body---------------------------------------------------------- -->
+<%$i = 0
+  $num = 35
+  while $i < $num  do
+%>
+  <br/>
+<% $i +=1
+   end
+%>
+
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="sidenav">
-        <a href="#about"><strong>My Profile</strong></a>
-        <a href="#services">Edit Profile</a>
-        <a href="#clients">Password & Security</a>
-      </div>
-    </div>
-    <div class="col-md-9">
-      <div class="my-card">
-        <div class="container">
-          <h1>Paradise Tours</h1>
-          <h4>
-            <%= image_tag "location.png" ,:style=>"width:18px;height:18px;padding-bottom:1px;"%>
-            179/A Ablock New Muslim Town Lahore
-          </h4>
-          <p>
-            Deluxe Holidays is a dedicated and experienced agency that works with top service providers worldwide. We provide our clients with premium travel services including; the latest model vehicles for transfers, expert & well-mannered tour guides throughout the trips, selection of hotels based on high reviews along with quality locations, room sizes, meals and amenities. We have contracted with premium fine dining Indian Sub-Continent & International Restaurants worldwide. We have special discounts with worldwide outlet malls, attractions, theme parks, cruise companies and train organizations in order to provide the finest trips to our customers.
-          </p>
+  <%if Tour.first
+      tour = Tour.first
+  %>
+    <div class="row">
+      <div class="col-lg-4 ">
+        <div class="card" style="margin-bottom: 20px;">
+          <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+          <div class="card-body">
+            <h4 class="card-title"><%=tour.title %></h4>
+            <p class="card-text">Destination : <%=tour.destination %>
+              <br/>Departure : <%=tour.departure_date %>
+              <br/>Budget      : <%=tour.budget %> PKR</p>
+            <form action="agency_single_tour" method="get" style="display: inline">
+              <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+              <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9">
-      <div class="my-card">
-        <div class="container">
-          <h1>Arranged Tours</h1>
-          <div class="row">
-            <div class="card" style="width:50%;">
-              <%= image_tag "sample.PNG", :class=>"card-img-top",:style=>"height:200px;" %>
-              <div class="card-body">
-                <h4 class="card-title">Best of northern Pakistan in Summers</h4>
-                <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
-                  Meals Breakfast Lunch Dinner Complete Transportation &amp Tour Guide</p>
-                <button href="#" class="rounded" style="border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;" >9 Days</button>
-              </div>
-            </div>
-            <div class="card" style="left:1%;width:50%;">
-              <%= image_tag "sample.PNG", :class=>"card-img-top",:style=>"height:200px;" %>
-              <div class="card-body">
-                <h4 class="card-title">Best of northern Pakistan in Summers</h4>
-                <p class="card-text">Hunza | Naran | Shogran | Khunjrab China Border | Saiful Mulook | Islamabad All
-                  Meals Breakfast Lunch Dinner Complete Transportation &amp Tour Guide</p>
-                <button href="#" class="rounded" style="border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;" >9 Days</button>
-              </div>
+      <%if Tour.second
+          tour = Tour.second
+      %>
+        <div class="col-lg-4 ">
+          <div class="card" style="margin-bottom: 20px;">
+            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=tour.title %></h4>
+              <p class="card-text">Destination : <%=tour.destination %>
+                <br/>Departure : <%=tour.departure_date %>
+                <br/>Budget      : <%=tour.budget %> PKR</p>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+              </form>
             </div>
           </div>
-          <br/><br/>
-          <div class="col text-center">
-            <button href="#" class="btn btn-default" style="font-weight:bold;border:1px solid green;color:green;background-color:white;width:250px;" >Show More</button>
-          </div><br/>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9">
-      <div class="my-card">
-        <div class="container">
-          <h1>Linked Accounts</h1>
-          <table class="table">
-            <tbody>
-            <tr>
-              <th scope="col">
-                <button class="ui facebook  big button">
-                  <i class="facebook icon"></i>
-                  Facebook
-                </button>
-              </th>
-              <th scope="col">
-                <button class="ui twitter  big button">
-                  <i class="twitter icon"></i>
-                  Twitter
-                </button>
-              </th>
-              <th scope="col">
-                <button class="ui instagram big button">
-                  <i class="instagram icon"></i>
-                  Instagram
-                </button>
-              </th>
-            </tr>
-            </tbody>
-          </table>
+      <%end %>
+      <%if Tour.third
+          tour = Tour.third
+      %>
+        <div class="col-lg-4 ">
+          <div class="card" style="margin-bottom: 20px;">
+            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=tour.title %></h4>
+              <p class="card-text">Destination : <%=tour.destination %>
+                <br/>Departure : <%=tour.departure_date %>
+                <br/>Budget      : <%=tour.budget %> PKR</p>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
+      <%end %>
     </div>
-  </div>
+    <br/><br/>
+    <div class="col text-center">
+      <%= link_to "Show More" , groupTours_path ,class:"btn btn-default" ,style: "font-weight:bold;border:1px solid green;color:green;background-color:white;width:250px;"%>
+    </div>
+  <%end %>
 </div>
-<br/><br/><br/><br/>
+<!----------------------------------------------------------------------------------------->
 
+<br/>
+<!------------------------------------Container------------------------------------------------------------>
+
+<br/><br/>
+
+<div style="background-color:#E5E4E2;">
+  <br/><br/>
+  <div class="col text-center">
+    <h2 style="font-weight:bold;color:#F87217;" >Top <span style="font-weight:bold;color:#E42217;">Destinations</span></h2>
+  </div>
+  <br/><br/>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 ">
+        <div class="card" style="margin-bottom: 20px;">
+          <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+          <div class="card-body">
+            <h4 class="card-title">Shangrila, Lower Kachura Lake</h4>
+            <p class="card-text">Family, Friends, Relax</p>
+            <button href="#" class="rounded" style="font-weight:bold;border:1px solid #F87217;color:#E42217;background-color:white;" >9 Days</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 ">
+        <div class="card" style="margin-bottom: 20px;">
+          <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+          <div class="card-body">
+            <h4 class="card-title">Naran, Kaghan and Shogran</h4>
+            <p class="card-text">Family, Friends, Relax</p>
+            <button href="#" class="rounded" style="font-weight:bold;border:1px solid #F87217;color:#E42217;background-color:white;" >5 Days</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 ">
+        <div class="card" style="margin-bottom: 20px;">
+          <%= image_tag "swat.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+          <div class="card-body">
+            <h4 class="card-title">Kalam, Swat</h4>
+            <p class="card-text">Family, Friends, Relax</p>
+            <button href="#" class="rounded" style="font-weight:bold;border:1px solid #F87217;color:#E42217;background-color:white;" >6 Days</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/><br/><br/><br/>
+</div>

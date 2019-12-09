@@ -1,0 +1,122 @@
+<%
+  id = []
+  title = []
+  destination = []
+  duration = []
+  budget = []
+  @tours.each do |tour|
+    id.push(tour.id)
+    title.push(tour.title)
+    destination.push(tour.destination)
+    duration.push(tour.duration)
+    budget.push(tour.budget)
+  end
+%>
+	<!------------------------------------Body--------------------------------------------------------------->
+<%  if id.count%2==0 %>
+  <br/><br/>
+  <div class="container">
+    <h1 align="center" style="padding-bottom: 3%;" >Your Events</h1>
+    <% for i in (0..id.count-1).step(2) do %>
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="card" style="margin-bottom: 20px;">
+            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=title[i] %></h4>
+              <p class="card-text">Destination : <%=destination[i] %>
+                <br/>Duration    : <%=duration[i] %> days
+                <br/>Budget      : <%=budget[i] %> PKR</p>
+              <button onclick="window.location.href = '#';" class="rounded" style="border:1px solid #9F000F;color:white;background-image:linear-gradient(to right, #F88017, #9F000F);
+                  width:100px;" >Book Now</button>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=id[i] %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="View Package" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"/>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="card" >
+            <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=title[i+1] %></h4>
+              <p class="card-text">Destination : <%=destination[i+1] %>
+                <br/>Duration    : <%=duration[i+1] %> days
+                <br/>Budget      : <%=budget[i+1] %> PKR</p>
+              <button onclick="window.location.href = '#';" class="rounded" style="border:1px solid #9F000F;color:white;background-image:linear-gradient(to right, #F88017, #9F000F);
+                  width:100px;" >Book Now</button>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=id[i+1] %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="View Package" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"/>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end %>
+
+  </div>
+<%  else  %>
+  <br/><br/>
+  <div class="container">
+    <h1 align="center" style="padding-bottom: 3%;" >Your Events</h1>
+    <% for i in (0..id.count-1).step(2) do %>
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="card" style="margin-bottom: 20px;">
+            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=title[i] %></h4>
+              <p class="card-text">Destination : <%=destination[i] %>
+                <br/>Duration    : <%=duration[i] %> days
+                <br/>Budget      : <%=budget[i] %> PKR</p>
+              <button onclick="window.location.href = '#';" class="rounded" style="border:1px solid #9F000F;color:white;background-image:linear-gradient(to right, #F88017, #9F000F);
+                  width:100px;" >Book Now</button>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=id[i] %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="View Package" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"/>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% if(i==id.count-1)
+            break
+           end
+        %>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="card" >
+            <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <div class="card-body">
+              <h4 class="card-title"><%=title[i+1] %></h4>
+              <p class="card-text">Destination : <%=destination[i+1] %>
+                <br/>Duration    : <%=duration[i+1] %> days
+                <br/>Budget      : <%=budget[i+1] %> PKR</p>
+              <button onclick="window.location.href = '#';" class="rounded" style="border:1px solid #9F000F;color:white;background-image:linear-gradient(to right, #F88017, #9F000F);
+                  width:100px;" >Book Now</button>
+              <form action="agency_single_tour" method="get" style="display: inline">
+                <input type="hidden" value="<%=id[i+1] %>" id="tour_id" name="tour_id" />
+                <input  type="submit" value="View Package" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"/>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end %>
+
+  </div>
+<%  end   %>
+
+                <br/><br/>
+                <div class="container" style="margin-left: 38%;">
+                  <div class="navigation">
+                    <div class="pagination">
+                      <%= will_paginate @tours %>
+                    </div>
+                  </div>
+                </div>
+
+    <br/><br/><br/><br/>
+
+          </div>
+					<br/><br/>

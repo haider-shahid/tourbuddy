@@ -1,0 +1,111 @@
+<!------------------------------------Body--------------------------------------------------------------->
+					<br/><br/>				
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="sidenav">
+                  <%= link_to "My Customized Tours" , all_user_tours_path %>
+                  <%= link_to "Edit Profile" , edit_user_profile_path %>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="my-card">
+									<div class="container">						
+	    								<h1><%=@user.full_name %></h1>
+	    								<h4>
+                        <i class="inbox icon"></i>
+                        <%=@user.email %>
+	    								</h4>
+							    	</div>
+								</div>
+							</div>							
+						</div>
+						<div class="row">
+							<div class="col-md-3">								
+							</div>
+							<div class="col-md-9">
+								<div class="my-card">
+									<div class="container">						
+	    								<h1>Requested Tours</h1>
+                    <%if User_Tour.find_by_user_id(@user.id)
+                        tour = User_Tour.find_by_user_id(@user.id)
+                    %>
+                      <div class="row">
+                        <div class="card" style="width:50%;">
+                          <div class="card-body">
+                            <h4 class="card-title"><%=tour.title %></h4>
+                            <p class="card-text">Destination : <%=tour.destination %>
+                              <br/>Departure : <%=tour.departure_date %>
+                              <br/>Budget      : <%=tour.budget %> PKR</p>
+                            <form action="user_single_tour" method="get" style="display: inline">
+                              <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+                              <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+                            </form>
+                          </div>
+                        </div>
+                        <%if User_Tour.where(user_id: @user.id).second
+                            tour = User_Tour.where(user_id: @user.id).second
+                        %>
+                          <div class="card" style="left:1%;width:50%;">
+                            <div class="card-body">
+                              <h4 class="card-title"><%=tour.title %></h4>
+                              <p class="card-text">Destination : <%=tour.destination %>
+                                <br/>Departure : <%=tour.departure_date %>
+                                <br/>Budget      : <%=tour.budget %> PKR</p>
+                              <form action="user_single_tour" method="get" style="display: inline">
+                                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
+                                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
+                              </form>
+                            </div>
+                          </div>
+                        <%end %>
+                      </div>
+                      <br/><br/>
+                      <div class="col text-center">
+                        <%= link_to "Show More" , all_user_tours_path ,class:"btn btn-default" ,style: "font-weight:bold;border:1px solid green;color:green;background-color:white;width:250px;"%>
+                      </div>
+                    <%end %>
+
+
+									<br/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">								
+							</div>
+							<div class="col-md-9">
+								<div class="my-card">
+									<div class="container">						
+	    								<h1>Linked Accounts</h1>
+	    								<table class="table">
+											  <tbody>
+											  		<tr>
+											      		<th scope="col">											      	
+						    								<button class="ui facebook  big button">
+						    									<i class="fab fa-facebook"></i>
+						    										Facebook
+						    								</button>
+											      		</th>
+													    <th scope="col">
+													    	<button class="ui twitter  big button">
+					  											<i class="twitter icon"></i>
+					  													Twitter
+															</button>
+													    </th>
+													    <th scope="col">
+													    	<button class="ui instagram big button">
+  																<i class="instagram icon"></i>
+  																	Instagram
+															</button>
+													    </th>											      
+											    	</tr>
+											  </tbody>											  
+										</table>
+							    	</div>
+								</div>
+							</div>							
+						</div>
+					</div>							
+					<br/><br/><br/><br/>

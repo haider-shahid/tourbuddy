@@ -1,0 +1,63 @@
+<%
+  id = []
+  title = []
+  destination = []
+  duration = []
+  budget = []
+  @tours.each do |user_tour|
+    id.push(user_tour.id)
+    title.push(user_tour.title)
+    destination.push(user_tour.destination)
+    duration.push(user_tour.duration)
+    budget.push(user_tour.budget)
+  end
+%>
+	<!------------------------------------Body--------------------------------------------------------------->
+
+  <br/><br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container">
+        <h1 align="center">Your Custom Events</h1>
+    <% for i in (0..id.count-1) do %>
+          <div class="list-group">
+            <a href="javascript:submitForm(<%=id[i] %>);" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1"><%=title[i] %></h3>
+              </div>
+              <small class="text-muted">Duration    : <%=duration[i] %> days</small><br>
+              <small class="text-muted">Destination    : <%=destination[i] %></small><br>
+              <small class="text-muted">Budget : <span> <%=budget[i] %> PKR</span></small>
+            </a>
+          </div>
+    <%end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function submitForm(id) {
+      document.forms.SingleTourForm.tour_id.value = id
+      document.forms.SingleTourForm.submit()
+  }
+</script>
+
+<form name="SingleTourForm" action="user_single_tour" method="get" style="display: inline">
+  <input type="hidden" value="" id="tour_id" name="tour_id" />
+</form>
+
+<!-------------------------------------------------------------------------------------------------------->
+                <br/><br/>
+                <div class="container" style="margin-left: 38%;">
+                  <div class="navigation">
+                    <div class="pagination">
+                      <%= will_paginate @tours %>
+                    </div>
+                  </div>
+                </div>
+
+    <br/><br/><br/><br/>
+
+          </div>
+					<br/><br/>

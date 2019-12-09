@@ -1,0 +1,81 @@
+
+	<!------------------------------------Body--------------------------------------------------------------->
+					<br/><br/>				
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="sidenav">
+                  <%= link_to "My Tours" , all_agency_tours_path %>
+                  <%= link_to "Edit Profile" , edit_agency_profile_path %>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="my-card">
+									<div class="container">						
+	    								<h2>Information Settings</h2>
+                   <form action="edit_agency_info" method="get" style="display: inline">
+									<div class="form-group">
+										<label for="formGroupExampleInput">Email</label>
+										<input type="email" class="form-control" value="" name="edit_email" id="edit_email" placeholder="Email">
+									</div>									
+									<div class="form-group">
+										<label for="formGroupExampleInput2">Title</label>
+										<input type="text" class="form-control" value="" name="edit_title" id="edit_title" placeholder="Title">
+									</div>
+									<div class="form-group">
+										<label for="formGroupExampleInput2">Phone Number</label>
+										<input type="number" class="form-control" value="" name="edit_number" id="edit_number" placeholder="Phone Number">
+									</div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Address</label>
+                    <input type="text" class="form-control" value="" name="edit_address" id="edit_address" placeholder="Address">
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">About</label>
+                    <input type="text" class="form-control" value="" name="edit_about" id="edit_about" placeholder="About">
+                  </div>
+									<div class="form-group row">
+										<div class="col-md-12">
+											<button type="submit" class="ui green button ">Save Changes</button>
+										</div>
+									</div>
+								</form>				
+							    	</div>
+								</div>
+							</div>							
+						</div>						
+					</div>
+    <!------------------------------------------------------------------------------------------->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="">
+
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="my-card">
+                  <div class="container">
+                    <h2>Password Settings</h2>
+                    <form action="edit_agency_password" method="get" style="display: inline">
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">New Password</label>
+                        <input type="password" class="form-control" value="" name="edit_new_password" id="edit_new_password" placeholder="New Password here">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">Confirm New Password</label>
+                        <input type="password" class="form-control" value="" name="edit_confirm_password" id="edit_confirm_password" placeholder="Confirm New Passoword here">
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12">
+                          <button type="submit" class="ui green button ">Save Changes</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+					<br/><br/><br/><br/>
+	<!-- -------------------------------footer------------------------------------------------------------- -->	
