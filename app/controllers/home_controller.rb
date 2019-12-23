@@ -26,21 +26,23 @@ class HomeController < ApplicationController
   end
 
   def agency_new_event
-
+    @tour = Tour.new
   end
 
   def add_agency_event
-    tour = Tour.new
-    tour.title = params[:title]
+    puts params.inspect
+    tour = Tour.new(agency_params)
     tour.agency = Agency.find(current_agency.id)
-    tour.departure_date = params[:date]
-    tour.duration = params[:days]
-    tour.budget = params[:price]
-    tour.destination = params[:destination]
-    tour.full_plan = params[:full_plan]
-    tour.image_path = "img1.jpg"
-    tour.save
-    redirect_to groupTours_path
+    if tour.save
+      tour.image.attach(params[:tour][:image])
+      redirect_to groupTours_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  def agency_params
+    params.require(:tour).permit(:title, :departure_date, :duration,:budget,:destination,:full_plan,:image)
   end
 
   def edit_agency_profile
@@ -60,14 +62,13 @@ class HomeController < ApplicationController
     tour.budget = params[:price]
     tour.destination = params[:destination]
     tour.full_plan = params[:full_plan]
-    tour.image_path = "img1.jpg"
     tour.save
-
     redirect_to all_agency_tours_path
   end
 
   def delete_agency_tour
     tour = Tour.find(params[:tour_id])
+    tour.image.purge
     tour.delete
     redirect_to all_agency_tours_path
   end

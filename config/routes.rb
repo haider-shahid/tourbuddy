@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'edit_agency_info', to: 'home#edit_agency_info'
   get 'edit_agency_password', to: 'home#edit_agency_password'
   get 'agency_new_event', to: 'home#agency_new_event'
-  get 'add_agency_event', to: 'home#add_agency_event'
+  post 'add_agency_event', to: 'home#add_agency_event'
   get 'delete_agency_tour', to: 'home#delete_agency_tour'
   get 'edit_agency_event', to: 'home#edit_agency_event'
   get 'save_edit_agency_changes', to: 'home#save_edit_agency_changes'
@@ -34,7 +34,5 @@ Rails.application.routes.draw do
   get 'delete_user_tour', to: 'user#delete_user_tour'
   get 'edit_user_event', to: 'user#edit_user_event'
   get 'save_edit_user_changes', to: 'user#save_edit_user_changes'
-
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -6,7 +6,11 @@
             <h1><%=@tour.title %></h1><br/>
             <div class="row">
 							<div class="card" style="left:0px;width:45rem;">
-                <%= image_tag "shangrila.jpg",class: "card-img-top", height:"300px"%>
+                <% if @tour.image.attached? %>
+                  <%= image_tag @tour.image,class: "card-img-top", height:"300px"%>
+                <% else %>
+                <%= image_tag "naran.jpg",class: "card-img-top", height:"300px"%>
+                <% end %>
 							</div>
 						</div>
 						

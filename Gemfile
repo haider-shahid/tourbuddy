@@ -7,8 +7,8 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.7'
-gem 'will_paginate','3.1.5'
+gem 'rails', '~> 5.2.0'
+gem 'will_paginate','3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -28,6 +28,7 @@ gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
 gem 'semantic-ui-sass'
 gem 'devise'
 gem 'hirb'
+gem 'bootsnap', require: false
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

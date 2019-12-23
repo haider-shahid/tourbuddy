@@ -68,6 +68,7 @@
   destination = []
   duration = []
   budget = []
+  actual_tour_obj =[]
 
   @tours.each do |tour|
     id.push(tour.id)
@@ -75,6 +76,7 @@
     destination.push(tour.destination)
     duration.push(tour.duration)
     budget.push(tour.budget)
+    actual_tour_obj.push(tour)
   end
 %>
             <%  if id.count%2==0 %>
@@ -83,7 +85,7 @@
                   <div class="row">
                     <div class="col-lg-5">
                       <div class="card" style="margin-bottom: 20px;">
-                        <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+                        <%= image_tag actual_tour_obj[i].image,class: "card-img-top", width:"30px",height:"200px"%>
                         <div class="card-body">
                           <h4 class="card-title"><%=title[i] %></h4>
                           <p class="card-text">Destination : <%=destination[i] %>
@@ -100,7 +102,7 @@
                     </div>
                     <div class="col-lg-5 offset-lg-1">
                       <div class="card" >
-                        <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+                        <%= image_tag actual_tour_obj[i+1].image,class: "card-img-top", width:"30px",height:"200px"%>
                         <div class="card-body">
                           <h4 class="card-title"><%=title[i+1] %></h4>
                           <p class="card-text">Destination : <%=destination[i+1] %>
@@ -126,7 +128,7 @@
                   <div class="row">
                     <div class="col-lg-5">
                       <div class="card" style="margin-bottom: 20px;">
-                        <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+                        <%= image_tag actual_tour_obj[i].image,class: "card-img-top", width:"30px",height:"200px"%>
                         <div class="card-body">
                           <h4 class="card-title"><%=title[i] %></h4>
                           <p class="card-text">Destination : <%=destination[i] %>
@@ -147,7 +149,7 @@
                     %>
                     <div class="col-lg-5 offset-lg-1">
                       <div class="card" >
-                        <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+                        <%= image_tag actual_tour_obj[i+1].image,class: "card-img-top", width:"30px",height:"200px"%>
                         <div class="card-body">
                           <h4 class="card-title"><%=title[i+1] %></h4>
                           <p class="card-text">Destination : <%=destination[i+1] %>
