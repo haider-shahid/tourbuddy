@@ -1,45 +1,58 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row" style="margin-top: 5%;">
+    <div class="col-md-6">
+      <%= image_tag "businessman.png" ,class:"img-fluid" %>
+    </div>
+    <div class="col-md-6 primary_font" style="margin-top: 5%;">
+      <div align="center">
+        <strong><span class="primary_color" style="font-size: larger">Register NOW ! </span></strong><span  style="font-size:larger">its Free</span>
+      </div></br>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Title</label>
+          <%= f.text_field :title ,autofocus: true,class:"form-control validate", placeholder:"Enter Title"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Email</label>
+          <%= f.email_field :email,class:"form-control validate", placeholder:"Enter Email"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">About</label>
+          <%= f.text_area :about, rows:3,cols:50,class:"form-control validate",placeholder:"About your agency.."%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Phone Number</label>
+          <%= f.text_field :phone_num,class:"form-control validate",placeholder:"Enter your Phone Number" %>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Address</label>
+          <%= f.text_area :address, rows:3,cols:50,class:"form-control validate",placeholder:"About your agency.."%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Password</label>
+          <%= f.password_field :password,class:"form-control validate",placeholder:"Enter Password"%>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Confirm Password</label>
+          <%= f.password_field :password_confirmation,class:"form-control validate",placeholder:"Confirm Password"%>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="d-flex justify-content-center flex-wrap">
+          <%= f.submit "Create Account",style:"color:white;background-color:green;width:300px;",class:"btn btn-deep-orange"%>
+        </div>
+      <%end %>
+      <div style="margin-top: 5%;">
+        <%= render "devise/shared/links"%>
+        Basic User?   <%= link_to "Register User",  new_user_registration_path,
+                                         style:"font-weight:bold;color:green;font-style:italic"%><br />
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title ,autofocus: true%>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email%>
-  </div>
-  <div class="field">
-    <%= f.label :about %><br />
-    <%= f.text_area :about, rows:3,cols:50%>
-  </div>
-  <div class="field">
-    <%= f.label :phone_num %><br />
-    <%= f.text_field :phone_num %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address , rows:3,cols:50 %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation%>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "agencies/shared/links" %>
+</div>
+<br/><br/><br/><br/>

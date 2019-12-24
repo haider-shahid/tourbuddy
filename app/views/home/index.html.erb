@@ -1,82 +1,8 @@
 
-<!------------------------------------------Navbar----------------------------------------------------->
-<div id="head">
-  <nav class="navbar navbar-expand-lg transparent navbar-inverse sticky-top" style="z-index:9;">
-    <%= link_to "Tour Buddy" , '#' ,class:"navbar-brand",style:"font-size:36px;font-weight:bold;color:white;"%>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><%=image_tag "menu.png",style: "width:25px;height:25px;" %></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <%= link_to "Home",'#' ,class:"nav-link"  ,style:"font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp; <span class="sr-only">(current)</span>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Group Tours" , groupTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Customised Tours" , customizedTours_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "About Us" , home_about_path ,class:"nav-link" ,style: "font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;&nbsp;
-        </li>
-        <%if current_user.present? || current_agency.present? %>
-          <li class="nav-item">
-            <%=image_tag "avatar.png", class: "rounded-circle float right",width: 30,height: 30%>
-          </li>
-          <% if current_user%>
-            <%session[:current_user_id] = current_user.id %>
-            <li class="nav-item">
-              <div class="ui dropdown">
-                <div class="nav-link" style="font-size:18px;font-weight:bold;color:white;">
-                  <%=current_user.full_name%>
-                </div>
-                <div class="menu">
-                  <div class="item">
-                    <i class="plus icon"></i><%= link_to('Request Customized Event', user_new_event_path) %></div>
-                  <div class="item">
-                    <i class="cog icon"></i><%= link_to('User Profile', user_profile_path) %></div>
-                  <div class="divider"></div>
-                  <div class="item">
-                    <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_user_session_path, method: :delete,style: "color:black;") %></div>
-                </div>
-              </div>
-            </li>
-          <% else %>
-            <%session[:current_agency_id] = current_agency.id %>
-            <li class="nav-item">
-              <div class="ui dropdown">
-                <div class="nav-link" style="font-size:18px;font-weight:bold;color:white;">
-                  <%=current_agency.email%>
-                </div>
-                <div class="menu">
-                  <div class="item">
-                    <i class="plus icon"></i><%= link_to('Add New Event', agency_new_event_path) %></div>
-                  <div class="item">
-                    <i class="cog icon"></i><%= link_to('Agency Profile', agency_profile_path) %></div>
-                  <div class="divider"></div>
-                  <div class="item">
-                    <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_agency_session_path, method: :delete,style: "color:black;") %></div>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        <%else %>
-          <li class="nav-item">
-            <%= link_to "Login" , new_user_session_path ,class:"nav-link",style:"font-size:18px;font-weight:bold;color:white;"%>&nbsp;&nbsp;
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign Up" ,  new_user_registration_path ,class:"nav-link rounded",style:"font-size:18px;font-weight:bold;color:green;background-color:white;display:block;"%>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
-</div>
 <!------------------------------------------Carousel----------------------------------------------------->
 
 <div class="bd-example">
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="position:absolute;width:100%;top:0;">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="position:relative;width:100%;top:0;">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -84,7 +10,7 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active" style="height: 600px;">
-        <%= image_tag "img1.jpg",style: "position: absolute;top: 0;left: 0;min-height: 600px;" ,class: "d-block w-100"%>
+        <%= image_tag "img1.jpg",style: "object-fit: fill;" ,class: "d-block w-100"%>
         <div class="carousel-caption d-none d-md-block" style="z-index:10;text-align:center;top:70%;bottom:auto;">
           <h5>Love where you're going</h5>
           <p>Book experiences you will want to tell the world about</p>
@@ -92,7 +18,7 @@
         </div>
       </div>
       <div class="carousel-item" style="height: 600px;">
-        <%= image_tag "img2.jpg",style: "position: absolute;top: 0;left: 0;min-height: 600px;" ,class: "d-block w-100"%>
+        <%= image_tag "img2.jpg",style: "object-fit: fill;" ,class: "d-block w-100"%>
         <div class="carousel-caption d-none d-md-block" style="z-index:10;text-align:center;top:70%;bottom:auto;">
           <h5>Love where you're going</h5>
           <p>Book experiences you will want to tell the world about</p>
@@ -100,7 +26,7 @@
         </div>
       </div>
       <div class="carousel-item" style="height: 600px;">
-        <%= image_tag "img3.jpg",style: "position: absolute;top: 0;left: 0;min-height: 600px;" ,class: "d-block w-100"%>
+        <%= image_tag "img3.jpg",style: "object-fit: fill;" ,class: "d-block w-100"%>
         <div class="carousel-caption d-none d-md-block" style="z-index:10;text-align:center;top:30%;left:55%;bottom:auto;">
           <h5>Love where you're going</h5>
           <p>Book experiences you will want to tell the world about</p>
@@ -117,17 +43,9 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
-
+</div><br/><br/><br/>
 <!-- ------------------------------------Body---------------------------------------------------------- -->
-<%$i = 0
-  $num = 35
-  while $i < $num  do
-%>
-  <br/>
-<% $i +=1
-   end
-%>
+
 
 <div class="container">
   <%if Tour.first
@@ -136,7 +54,7 @@
     <div class="row">
       <div class="col-lg-4 ">
         <div class="card" style="margin-bottom: 20px;">
-          <%= image_tag "naran.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+          <%= image_tag tour.image,class: "card-img-top", width:"30px",height:"200px"%>
           <div class="card-body">
             <h4 class="card-title"><%=tour.title %></h4>
             <p class="card-text">Destination : <%=tour.destination %>
@@ -154,7 +72,7 @@
       %>
         <div class="col-lg-4 ">
           <div class="card" style="margin-bottom: 20px;">
-            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+            <%= image_tag tour.image,class: "card-img-top", width:"30px",height:"200px"%>
             <div class="card-body">
               <h4 class="card-title"><%=tour.title %></h4>
               <p class="card-text">Destination : <%=tour.destination %>
