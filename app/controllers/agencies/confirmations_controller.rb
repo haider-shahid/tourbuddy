@@ -1,4 +1,4 @@
-git # frozen_string_literal: true
+# frozen_string_literal: true
 
 class Agencies::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new

@@ -1,16 +1,27 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row" style="margin-top: 5%;">
+    <div class="col-md-6">
+      <%= image_tag "envlop.png" ,class:"img-fluid" %>
+    </div>
+    <div class="col-md-6 primary_font" style="margin-top: 5%;">
+      <div align="center">
+        <strong><span class="primary_color" style="font-size: larger">Forgot your </span></strong><span  style="font-size:larger">password?</span>
+      </div></br>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Email</label>
+          <%= f.email_field :email,autofocus: true,class:"form-control validate", placeholder:"Enter Email"%>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap">
+          <%= f.submit "Send me reset password instructions",style:"color:white;background-color:green;width:300px;",class:"btn btn-deep-orange"%>
+        </div>
+      <%end %>
+      <div style="margin-top: 5%;">
+        <%= render "devise/shared/links"%>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "agencies/shared/links" %>
+</div>
+<br/><br/><br/><br/>
