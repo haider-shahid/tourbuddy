@@ -35,6 +35,7 @@ class HomeController < ApplicationController
     tour.agency = Agency.find(current_agency.id)
     if tour.save
       tour.image.attach(params[:tour][:image])
+      flash[:success] = "Event Successfully created"
       redirect_to groupTours_path
     else
       redirect_to root_path
@@ -63,6 +64,7 @@ class HomeController < ApplicationController
     tour.destination = params[:destination]
     tour.full_plan = params[:full_plan]
     tour.save
+    flash[:success] = "Successfully updated"
     redirect_to all_agency_tours_path
   end
 
@@ -70,6 +72,7 @@ class HomeController < ApplicationController
     tour = Tour.find(params[:tour_id])
     tour.image.purge
     tour.delete
+    flash[:warning] = "Successfully deleted"
     redirect_to all_agency_tours_path
   end
 
@@ -110,6 +113,7 @@ class HomeController < ApplicationController
     else
       agency.update(about: new_about)
     end
+    flash[:success] = "Successfully updated"
     redirect_to agency_profile_path
   end
 
@@ -121,6 +125,7 @@ class HomeController < ApplicationController
     if(!new_pass.eql?"" and !confirm_pass.eql?"")
       if new_pass.eql? confirm_pass
         agency.update(password: new_pass)
+        flash[:success] = "Password Updated Successfully"
       end
     else
 

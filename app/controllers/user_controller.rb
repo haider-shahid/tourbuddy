@@ -34,6 +34,7 @@ class UserController < ApplicationController
     tour.destination = params[:destination]
     tour.full_plan = params[:full_plan]
     tour.save
+    flash[:success] = "Event Successfully added"
     redirect_to all_user_tours_path
   end
 
@@ -55,13 +56,14 @@ class UserController < ApplicationController
     tour.destination = params[:destination]
     tour.full_plan = params[:full_plan]
     tour.save
-
+    flash[:success] = "Event Successfully updated"
     redirect_to all_user_tours_path
   end
 
   def delete_user_tour
     tour = User_Tour.find(params[:tour_id])
     tour.delete
+    flash[:warning] = "Successfully deleted"
     redirect_to all_user_tours_path
   end
 
@@ -84,7 +86,7 @@ class UserController < ApplicationController
     else
       user.update(full_name: new_name)
     end
-
+    flash[:success] = "Successfully updated"
     redirect_to user_profile_path
   end
 
@@ -96,6 +98,7 @@ class UserController < ApplicationController
     if(!new_pass.eql?"" and !confirm_pass.eql?"")
       if new_pass.eql? confirm_pass
         user.update(password: new_pass)
+        flash[:success] = "Password Successfully Updated"
       end
     else
 
