@@ -8,6 +8,6 @@ class Tour < ApplicationRecord
   validates :budget, presence: true
   validates :full_plan, presence: true
   validates :departure_date, presence: true
-
-
+  has_many :inclusions ,dependent: :destroy
+  accepts_nested_attributes_for :inclusions,allow_destroy: true,reject_if: :all_blank
 end

@@ -3,18 +3,20 @@
 					<br/><br/>
 				
 					<div class="container">
-						<form action="save_edit_agency_changes" method="get" style="display: inline">
+            <%= form_for @tour, :url =>update_event_path ,html: {style:"display: inline"} do |f|%>
 							<div class="row col-md-12">						
 								<h3>Edit Your Event</h3>
 								<br/><br/>						
 							</div>						
 							<div class="row col-md-12">	
 								<div class="jumbotron col-md-6" align="center">
-									<img src="images/upload_image.png" class="img-fluid">												
+                  <%= image_tag "upload_image.png", class:"img-fluid"%>
+<!--									<img src="images/upload_image.png" class="img-fluid">												-->
 										<div class="form-group">
 											<div class="upload-btn-wrapper">
 	  											<button class="ui secondary basic button">Upload an image</button>
-	  											<input type="file" name="myfile" accept="image/*" />
+                        <%=  f.file_field :image, accept: 'image/*'%>
+<!--	  											<input type="file" name="myfile" accept="image/*" />-->
 											</div>
 										</div>																
 	  							</div>							
@@ -26,30 +28,35 @@
 							<div class="row col-md-11">
 								<h5 class="col-md-2">Title</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" value="<%=@tour.title %>" name="title" id="title" required>
+                  <%=f.text_field :title, class:"form-control",value:@tour.title %>
+<!--									<input type="text" class="form-control" value="<%#=@tour.title %>" name="title" id="title" required>-->
 								</div>
 
 								<h5 class="col-md-2">Destination</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" value="<%=@tour.destination %>" name="destination" required>
+                  <%=f.text_field :destination, class:"form-control",value:@tour.destination%>
+<!--									<input type="text" class="form-control" value="<%#=@tour.destination %>" name="destination" required>-->
 								</div>
 							</div>	
 							<br/>								
 							<div class="row col-md-11">
 								<h5 class="col-md-3">Departure Date</h5>										
 								<div class="col-md-3">
-									<input type="date" class="form-control" value="<%=@tour.departure_date %>" name="date" required>
+                  <%=f.date_select :departure_date, class:"form-control",value:@tour.departure_date %>
+<!--									<input type="date" class="form-control" value="<%#=@tour.departure_date %>" name="date" required>-->
 								</div>
 								<h5 class="col-md-2">Package Price</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" value="<%=@tour.budget %>" name="price" required>
+                  <%=f.text_field :budget, class:"form-control",value:@tour.budget %>
+<!--									<input type="text" class="form-control" value="<%#=@tour.budget %>" name="price" required>-->
 								</div>
 							</div>		
 							<br/>
 							<div class="row col-md-11">
 								<h5 class="col-md-2">Duration(Days)</h5>										
 								<div class="col-md-4">
-									<input type="text" class="form-control" value="<%=@tour.duration %>" name="days" required>
+                  <%=f.text_field :duration, class:"form-control",value:@tour.duration %>
+<!--									<input type="text" class="form-control" value="<%#=@tour.duration %>" name="days" required>-->
 								</div>									
 							</div>	
 							<br/>
@@ -63,11 +70,17 @@
 							</div>
 							
 							<div class="row col-md-8">
-								<div class="col-md-8">
-									<textarea id="comment" rows="2" cols="60" placeholder=" Add Service that u provide in this Event" class="col-md-10"></textarea>
+								<div class="col-md-12">
+<!--									<textarea id="comment" rows="2" cols="60" placeholder=" Add Service that u provide in this Event" class="col-md-10"></textarea>-->
+                  <%= f.fields_for :inclusions do |inc| %>
+                    <%= render 'shared/inclusion_fields' ,f:inc %>
+                  <% end %>
+                  <div class="links">
+                    <%= link_to_add_association 'Add Service ', f, :inclusions,partial: 'shared/inclusion_fields',class:"ui violet button tiny" %>
+                  </div>
 								</div>
 								<div col-md-2>									
-									<button type="button" class="ui violet button tiny" onclick="new_element()">Add</button>
+<!--									<button type="button" class="ui violet button tiny" onclick="new_element()">Add</button>-->
 								</div>
 							</div>							
 							<br/>
@@ -77,13 +90,16 @@
 							</div>
 							<br/>	
 
-							<div class="row col-md-11">								
-									<textarea id="full_plan" name="full_plan" rows="10" cols="60" required><%=@tour.full_plan %></textarea>
+							<div class="row col-md-11">
+                <%= f.text_area(:full_plan, size: '60x10',value:@tour.full_plan)%>
+<!--									<textarea id="full_plan" name="full_plan" rows="10" cols="60" required><%#=@tour.full_plan %></textarea>-->
 							</div>							
 							<br/>
-              <input type="hidden" value="<%=@tour.id %>" id="tour_id" name="tour_id" />
-							<button type="submit" class="ui green button medium">Save Changes</button>
-						</form>	
+              <%= f.hidden_field :tour_id,value: @tour.id%>
+<!--              <input type="hidden" value="<%#=@tour.id %>" id="tour_id" name="tour_id" />-->
+              <%= f.submit "Save Changes",class:"ui green button medium"%>
+<!--							<button type="submit" class="ui green button medium">Save Changes</button>-->
+						<% end %>
 					</div>
 					
 					<br/><br/><br/><br/>

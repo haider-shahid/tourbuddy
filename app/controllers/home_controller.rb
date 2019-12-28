@@ -30,7 +30,6 @@ class HomeController < ApplicationController
   end
 
   def add_agency_event
-    puts params.inspect
     tour = Tour.new(agency_params)
     tour.agency = Agency.find(current_agency.id)
     if tour.save
@@ -43,7 +42,7 @@ class HomeController < ApplicationController
   end
 
   def agency_params
-    params.require(:tour).permit(:title, :departure_date, :duration,:budget,:destination,:full_plan,:image)
+    params.require(:tour).permit(:title, :departure_date, :duration,:budget,:destination,:full_plan,:image,inclusions_attributes: [:id, :service,:_destroy] )
   end
 
   def edit_agency_profile
@@ -51,27 +50,33 @@ class HomeController < ApplicationController
   end
 
   def edit_agency_event
-    @tour = Tour.find(params[:tour_id])
+    @tour = Tour.find(params[:id])
   end
 
   def save_edit_agency_changes
-    tour = Tour.find(params[:tour_id])
-    tour.title = params[:title]
-    tour.agency = Agency.find(current_agency.id)
-    tour.departure_date = params[:date]
-    tour.duration = params[:days]
-    tour.budget = params[:price]
-    tour.destination = params[:destination]
-    tour.full_plan = params[:full_plan]
-    tour.save
-    flash[:success] = "Successfully updated"
-    redirect_to all_agency_tours_path
+    tour = Tour.find(params[:tour][:tour_id])
+
+    if tour.update_attributes(agency_params)
+      flash[:success] = "Successfully updated"
+      redirect_to all_agency_tours_path
+    else
+      redirect_to root_path
+    end
+
+    # tour.title = params[:title]
+    # tour.agency = Agency.find(current_agency.id)
+    # tour.departure_date = params[:date]
+    # tour.duration = params[:days]
+    # tour.budget = params[:price]
+    # tour.destination = params[:destination]
+    # tour.full_plan = params[:full_plan]
+    # tour.save
   end
 
   def delete_agency_tour
     tour = Tour.find(params[:tour_id])
     tour.image.purge
-    tour.delete
+    tour.destroy
     flash[:warning] = "Successfully deleted"
     redirect_to all_agency_tours_path
   end

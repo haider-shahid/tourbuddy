@@ -70,11 +70,17 @@
 							</div>
 							
 							<div class="row col-md-8">
-								<div class="col-md-8">
-									<textarea id="comment" rows="2" cols="60" placeholder=" Add Service that u provide in this Event" class="col-md-10"></textarea>
+								<div class="col-md-12">
+                    <%= f.fields_for :inclusions do |inc| %>
+                      <%= render 'shared/inclusion_fields' ,f:inc %>
+                    <% end %>
+                  <div class="links">
+                    <%= link_to_add_association 'Add Service ', f, :inclusions,partial: 'shared/inclusion_fields',class:"ui violet button tiny" %>
+                  </div>
+<!--									<textarea id="comment" rows="2" cols="60" placeholder=" Add Service that u provide in this Event" class="col-md-10"></textarea>-->
 								</div>
-								<div col-md-2>									
-									<button type="button" class="ui violet button tiny" onclick="new_element()">Add</button>
+								<div col-md-2>
+<!--									<button type="button" class="ui violet button tiny" onclick="new_element()">Add</button>-->
 								</div>
 							</div>							
 							<br/>

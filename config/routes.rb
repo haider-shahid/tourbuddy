@@ -3,7 +3,6 @@ Rails.application.routes.draw do
       sessions: 'agencies/sessions',confirmations: 'agencies/confirmations',
       registrations: 'agencies/registrations',passwords: 'agencies/passwords'
   }
-
   devise_for :users, :controllers =>{registrations: 'registrations'},path: 'users'
   root 'home#index'
   get 'home/about', 'home#about'
@@ -17,8 +16,8 @@ Rails.application.routes.draw do
   get 'agency_new_event', to: 'home#agency_new_event'
   post 'add_agency_event', to: 'home#add_agency_event'
   get 'delete_agency_tour', to: 'home#delete_agency_tour'
-  get 'edit_agency_event', to: 'home#edit_agency_event'
-  get 'save_edit_agency_changes', to: 'home#save_edit_agency_changes'
+  get 'edit_agency_event/:id', to: 'home#edit_agency_event' ,as: 'edit_event'
+  patch 'save_edit_agency_changes', to: 'home#save_edit_agency_changes' ,as: 'update_event'
 
   #-------------------------------------------------------------------------------------
 

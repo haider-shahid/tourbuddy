@@ -12,6 +12,7 @@
 //= require jquery
 //= require popper
 //= require bootstrap
+//= require cocoon
 
 // Loads all Semantic javascripts
 //= require semantic-ui
