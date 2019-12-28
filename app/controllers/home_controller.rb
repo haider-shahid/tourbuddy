@@ -19,6 +19,7 @@ class HomeController < ApplicationController
 
   def agency_single_tour
     @tour = Tour.find(params[:tour_id])
+    @comment = Comment.new
   end
 
   def all_agency_tours
@@ -135,6 +136,13 @@ class HomeController < ApplicationController
     else
 
     end
+    redirect_to root_path
+  end
+
+  def add_comment
+    # render plain: params[:comment][:comment].inspect
+    @tour = Tour.find_by(id:params[:comment][:id])
+    Comment.create(comment:params[:comment][:comment],tour:@tour)
     redirect_to root_path
   end
 

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'delete_agency_tour', to: 'home#delete_agency_tour'
   get 'edit_agency_event/:id', to: 'home#edit_agency_event' ,as: 'edit_event'
   patch 'save_edit_agency_changes', to: 'home#save_edit_agency_changes' ,as: 'update_event'
+  post 'add_comment', to: 'home#add_comment'
 
   #-------------------------------------------------------------------------------------
 
