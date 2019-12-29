@@ -60,10 +60,7 @@
             <p class="card-text">Destination : <%=tour.destination %>
               <br/>Departure : <%=tour.departure_date %>
               <br/>Budget      : <%=tour.budget %> PKR</p>
-            <form action="agency_single_tour" method="get" style="display: inline">
-              <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
-              <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
-            </form>
+            <%= link_to "View Package" ,agency_single_tour_path( :tour_id => tour.id),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
           </div>
         </div>
       </div>
@@ -78,10 +75,7 @@
               <p class="card-text">Destination : <%=tour.destination %>
                 <br/>Departure : <%=tour.departure_date %>
                 <br/>Budget      : <%=tour.budget %> PKR</p>
-              <form action="agency_single_tour" method="get" style="display: inline">
-                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
-                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
-              </form>
+              <%= link_to "View Package" ,agency_single_tour_path( :tour_id => tour.id),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
             </div>
           </div>
         </div>
@@ -97,10 +91,7 @@
               <p class="card-text">Destination : <%=tour.destination %>
                 <br/>Departure : <%=tour.departure_date %>
                 <br/>Budget      : <%=tour.budget %> PKR</p>
-              <form action="agency_single_tour" method="get" style="display: inline">
-                <input type="hidden" value="<%=tour.id %>" id="tour_id" name="tour_id" />
-                <input  type="submit" value="<%=tour.duration %> Days" class="button rounded" style="padding-left:10px;padding-right:10px;border:1px solid #9F000F;color:#9F000F;background-color:white;width:100%;"/>
-              </form>
+              <%= link_to "View Package" ,agency_single_tour_path( :tour_id => tour.id),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
             </div>
           </div>
         </div>

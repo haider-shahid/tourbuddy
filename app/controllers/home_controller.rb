@@ -142,8 +142,22 @@ class HomeController < ApplicationController
   def add_comment
     # render plain: params[:comment][:comment].inspect
     @tour = Tour.find_by(id:params[:comment][:id])
-    Comment.create(comment:params[:comment][:comment],tour:@tour)
-    redirect_to root_path
+    if session[:current_agency_id].present?
+      agency = Agency.find(session[:current_agency_id])
+      Comment.create(comment:params[:comment][:comment],tour:@tour,agency_id:agency.id)
+    elsif session[:current_user_id].present?
+      user = User.find(session[:current_user_id])
+      Comment.create(comment:params[:comment][:comment],tour:@tour,user_id:user.id)
+    end
+    flash[:success]= "Comment Successfully Added"
+    redirect_to agency_single_tour_path(:tour_id =>@tour.id)
+  end
+
+  def del_comment
+    @msg = Comment.find_by(id: params[:comment_id])
+    @msg.destroy
+    flash[:danger] ="Comment Successfully Deleted"
+    redirect_to agency_single_tour_path(:tour_id =>params[:tour_id])
   end
 
 end
