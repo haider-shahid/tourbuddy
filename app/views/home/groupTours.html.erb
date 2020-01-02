@@ -100,8 +100,6 @@
                             <p class="card-text">Destination : <%=destination[i+1] %>
                             <br/>Duration    : <%=duration[i+1] %> days
                             <br/>Budget      : <%=budget[i+1] %> PKR</p>
-                            <button onclick="window.location.href = '#';" class="rounded" style="border:1px solid #9F000F;color:white;background-image:linear-gradient(to right, #F88017, #9F000F);
-                                width:100px;" >Book Now</button>
                             <%= link_to "View Package" ,agency_single_tour_path(:tour_id => id[i+1]),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
                           </div>
                         </div>

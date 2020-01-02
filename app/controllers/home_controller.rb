@@ -1,10 +1,8 @@
 class HomeController < ApplicationController
   def index
-    #@disable_nav = true;
   end
 
   def about
-
   end
 
   #######################################################  Agency Controllers  ################################3
@@ -14,7 +12,7 @@ class HomeController < ApplicationController
   end
 
   def groupTours
-    @tours = Tour.paginate(page: params[:page], per_page: 6)
+    @tours = Tour.order("created_at DESC").paginate(page: params[:page], per_page: 6)
   end
 
   def agency_single_tour
@@ -23,7 +21,7 @@ class HomeController < ApplicationController
   end
 
   def all_agency_tours
-    @tours = Tour.where(agency_id: current_agency.id).paginate(page: params[:page], per_page: 6)
+    @tours = Tour.where(agency_id: current_agency.id).order("created_at DESC").paginate(page: params[:page], per_page: 6)
   end
 
   def agency_new_event
