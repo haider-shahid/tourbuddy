@@ -35,5 +35,7 @@ Rails.application.routes.draw do
   get 'delete_user_tour', to: 'user#delete_user_tour'
   get 'edit_user_event', to: 'user#edit_user_event'
   get 'save_edit_user_changes', to: 'user#save_edit_user_changes'
+  post 'add_user_comment', to: 'user#add_user_comment'
+  get 'del_user_comment', to: 'user#del_user_comment'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

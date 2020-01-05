@@ -28,8 +28,8 @@
 								<div class="my-card">
 									<div class="container">						
 	    								<h1>Requested Tours</h1>
-                    <%if User_Tour.find_by_user_id(@user.id)
-                        tour = User_Tour.find_by_user_id(@user.id)
+                    <%if UserTour.find_by_user_id(@user.id)
+                        tour = UserTour.find_by_user_id(@user.id)
                     %>
                       <div class="row">
                         <div class="card" style="width:50%;">
@@ -44,8 +44,8 @@
                             </form>
                           </div>
                         </div>
-                        <%if User_Tour.where(user_id: @user.id).second
-                            tour = User_Tour.where(user_id: @user.id).second
+                        <%if UserTour.where(user_id: @user.id).second
+                            tour = UserTour.where(user_id: @user.id).second
                         %>
                           <div class="card" style="left:1%;width:50%;">
                             <div class="card-body">

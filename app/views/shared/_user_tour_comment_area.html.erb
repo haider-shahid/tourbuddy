@@ -1,0 +1,55 @@
+<h1>Comments</h1>
+<% if obj.user_comments.any? %>
+  <ul class="comment-section">
+    <% obj.user_comments.each do |msg| %>
+      <%if msg.user_id.present? %>
+        <% user = User.find_by(id:msg.user_id)%>
+        <li class="comment user-comment">
+          <div class="info">
+            <a href="#"><%= user.full_name %></a>
+            <span><%= time_ago_in_words(msg.created_at) + ' ago' %></span>
+          </div>
+          <a class="avatar" href="#">
+            <%= image_tag "Comment_Avatar.png", width: "35" %>
+            <!--      <img src="images/avatar_user_1.jpg" width="35" alt="Profile Avatar" title="Anie Silverston" />-->
+          </a>
+          <p><%= msg.comment %>
+            <%if current_user.present? %>
+              <span style="margin-left: 3%;margin-top: 1%;"><%= link_to "Delete", del_user_comment_path(:comment_id => msg.id,:tour_id => obj),class:"red tiny ui circular button",style: "float:right" if obj.user_id.equal?(current_user.id) %></span
+            <%end%>
+          </p>
+        </li>
+      <%elsif msg.agency_id.present?%>
+        <li class="comment author-comment">
+          <div class="info">
+            <a href="#">Agency</a>
+            <span><%= time_ago_in_words(msg.created_at) + ' ago' %></span>
+          </div>
+          <a class="avatar" href="#">
+            <%= image_tag "Comment_Avatar.png", width: "35" %>
+            <!--      <img src="images/avatar_user_1.jpg" width="35" alt="Profile Avatar" title="Anie Silverston" />-->
+          </a>
+          <p><%= msg.comment %>
+            <%if current_user.present? %>
+              <span style="margin-left: 3%;margin-top: 1%;"><%= link_to "Delete", del_user_comment_path(:comment_id => msg.id,:tour_id => obj),class:"red tiny ui circular button",style: "float:right" if obj.user_id.equal?(current_user.id) %></span>
+            <%end %>
+          </p>
+        </li>
+      <%end%>
+    <% end %>
+<% else  %>
+  <p>No  Comments</p>
+<% end %>
+<%if current_agency.present? || (current_user.present? && obj.user_id.equal?(current_user.id))%>
+  <li class="write-new">
+    <%= form_for @user_comment, :url => add_user_comment_path,html: {style:"display: inline"} do |f|%>
+      <%= f.text_area :comment,placeholder:"Write Comment here. . . . . . .", :required => true%>
+      <%= f.hidden_field :id ,value:obj.id%>
+      <div>
+        <%= image_tag "Comment_Avatar.png", width: "35" %>
+        <%= f.submit "Add Comment" ,class:"comment-submit-button"%>
+      </div>
+    <% end %>
+  </li>
+<% end  %>
+</ul>

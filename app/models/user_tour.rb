@@ -1,5 +1,6 @@
-class User_Tour < ApplicationRecord
+class UserTour < ApplicationRecord
   belongs_to :user
+  has_many :user_comments ,dependent: :destroy
   validates :user_id, presence: true
   validates :duration, presence: true
   validates :destination, presence: true
