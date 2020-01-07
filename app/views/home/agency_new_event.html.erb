@@ -8,19 +8,22 @@
 							<div class="row col-md-12">						
 								<h3>Add New Event</h3>
 								<br/><br/>						
-							</div>						
-							<div class="row col-md-12">	
-								<div class="jumbotron col-md-6" align="center">
-                  <%= image_tag "upload_image.png", class:"img-fluid"%>
+							</div>
+              <img id="img_prev" src="" style="display:none; height: 300px; ">
+              <br/><br/>
+							<div class="row col-md-12">
+								<div  align="center">
+                  <%= image_tag "upload_image.png", class:"img-fluid",id:"upload_image"%>
                   <div class="form-group">
                     <div class="upload-btn-wrapper">
-                        <button class="ui secondary basic button">Upload an image</button>
-                      <%=  f.file_field :image, accept: 'image/*'%>
+                        <button class="ui secondary basic button" id="upload_image_text">Upload an image</button>
+                      <%=  f.file_field :image, accept: 'image/*',onchange: "showImage.call(this);",:required => true%>
 <!--                        <input type="file" name="image" accept="image/*" />-->
                     </div>
                   </div>
                 </div>
-							</div>											
+							</div>
+              <br/>
 							<div class="row col-md-12">
 								<h4 class="card-title"><%= image_tag "umbrella.png",style: "width:20px;height:20px;padding-bottom:1px;background-color:yellow;"%>&nbsp; Description</h4>
 							</div>
@@ -28,13 +31,13 @@
 							<div class="row col-md-11">
 								<h5 class="col-md-2">Title</h5>										
 								<div class="col-md-4">
-                  <%=f.text_field :title, class:"form-control"%>
+                  <%=f.text_field :title, class:"form-control" ,:required => true%>
 <!--									<input type="text" class="form-control" name="title" id="title" required>-->
 								</div>
 
 								<h5 class="col-md-2">Destination</h5>										
 								<div class="col-md-4">
-                  <%=f.text_field :destination, class:"form-control"%>
+                  <%=f.text_field :destination, class:"form-control",:required => true%>
 <!--									<input type="text" class="form-control" name="destination" required>-->
 								</div>
 							</div>	
@@ -42,12 +45,12 @@
 							<div class="row col-md-11">
 								<h5 class="col-md-3">Departure Date</h5>										
 								<div class="col-md-3">
-                  <%=f.date_select :departure_date, class:"form-control"%>
+                  <%=f.date_select :departure_date, class:"form-control",:required => true%>
 <!--									<input type="date" class="form-control" name="departure_date" required>-->
 								</div>
 								<h5 class="col-md-2">Package Price</h5>										
 								<div class="col-md-4">
-                  <%=f.text_field :budget, class:"form-control"%>
+                  <%=f.text_field :budget, class:"form-control",:required => true%>
 <!--									<input type="text" class="form-control" name="budget" required>-->
 								</div>
 							</div>		
@@ -55,7 +58,7 @@
 							<div class="row col-md-11">
 								<h5 class="col-md-2">Duration(Days)</h5>										
 								<div class="col-md-4">
-                  <%=f.text_field :duration, class:"form-control"%>
+                  <%=f.text_field :duration, class:"form-control",:required => true%>
 <!--									<input type="text" class="form-control" name="duration" required>-->
 								</div>									
 							</div>	
@@ -91,7 +94,7 @@
 							<br/>	
 
 							<div class="row col-md-11">
-                <%= f.text_area(:full_plan, size: '60x10') %>
+                <%= f.text_area(:full_plan, size: '60x10',:required => true) %>
 <!--									<textarea id="full_plan" name="full_plan" rows="10" cols="60" required></textarea>-->
 							</div>							
 							<br/>

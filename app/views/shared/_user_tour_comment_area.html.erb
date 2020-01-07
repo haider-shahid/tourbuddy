@@ -15,7 +15,7 @@
           </a>
           <p><%= msg.comment %>
             <%if current_user.present? %>
-              <span style="margin-left: 3%;margin-top: 1%;"><%= link_to "Delete", del_user_comment_path(:comment_id => msg.id,:tour_id => obj),class:"red tiny ui circular button",style: "float:right" if obj.user_id.equal?(current_user.id) %></span
+              <span style="margin-left: 3%;margin-top: 1%;"><%= link_to "Delete", del_user_comment_path(:comment_id => msg.id,:tour_id => obj),class:"red tiny ui circular button",style: "float:right" if obj.user_id.equal?(current_user.id) %></span>
             <%end%>
           </p>
         </li>
@@ -41,7 +41,7 @@
   <p>No  Comments</p>
 <% end %>
 <%if current_agency.present? || (current_user.present? && obj.user_id.equal?(current_user.id))%>
-  <li class="write-new">
+  <div class="write-new">
     <%= form_for @user_comment, :url => add_user_comment_path,html: {style:"display: inline"} do |f|%>
       <%= f.text_area :comment,placeholder:"Write Comment here. . . . . . .", :required => true%>
       <%= f.hidden_field :id ,value:obj.id%>
@@ -50,6 +50,6 @@
         <%= f.submit "Add Comment" ,class:"comment-submit-button"%>
       </div>
     <% end %>
-  </li>
+  </div>
 <% end  %>
 </ul>

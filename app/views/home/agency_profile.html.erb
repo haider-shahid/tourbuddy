@@ -52,7 +52,7 @@
                             tour = Tour.where(agency_id: @agency.id).second
                         %>
                           <div class="card" style="left:1%;width:50%;">
-                            <%= image_tag "shangrila.jpg",class: "card-img-top", width:"30px",height:"200px"%>
+                            <%= image_tag tour.image,class: "card-img-top", width:"30px",height:"200px"%>
                             <div class="card-body">
                               <h4 class="card-title"><%=tour.title %></h4>
                               <p class="card-text">Destination : <%=tour.destination %>
