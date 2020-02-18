@@ -41,7 +41,7 @@
   <p>No  Comments</p>
 <% end %>
 <%if current_user.present? || (current_agency.present? && obj.agency_id.equal?(current_agency.id))%>
-  <li class="write-new">
+  <div class="write-new">
     <%= form_for @comment, :url => add_comment_path,html: {style:"display: inline"} do |f|%>
       <%= f.text_area :comment,placeholder:"Write Comment here. . . . . . .", :required => true%>
       <%= f.hidden_field :id ,value:obj.id%>
@@ -50,6 +50,6 @@
         <%= f.submit "Add Comment" ,class:"comment-submit-button"%>
       </div>
       <% end %>
-  </li>
+  </div>
   <% end  %>
 </ul>
