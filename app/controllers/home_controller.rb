@@ -1,10 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @disable_nav = true;
   end
 
   def about
-
   end
 
   #######################################################  Agency Controllers  ################################3
@@ -14,33 +12,36 @@ class HomeController < ApplicationController
   end
 
   def groupTours
-    @tours = Tour.paginate(page: params[:page], per_page: 6)
+    @tours = Tour.order("created_at DESC").paginate(page: params[:page], per_page: 6)
   end
 
   def agency_single_tour
     @tour = Tour.find(params[:tour_id])
+    @comment = Comment.new
   end
 
   def all_agency_tours
-    @tours = Tour.where(agency_id: current_agency.id).paginate(page: params[:page], per_page: 6)
+    @tours = Tour.where(agency_id: current_agency.id).order("created_at DESC").paginate(page: params[:page], per_page: 6)
   end
 
   def agency_new_event
-
+    @tour = Tour.new
   end
 
   def add_agency_event
-    tour = Tour.new
-    tour.title = params[:title]
+    tour = Tour.new(agency_params)
     tour.agency = Agency.find(current_agency.id)
-    tour.departure_date = params[:date]
-    tour.duration = params[:days]
-    tour.budget = params[:price]
-    tour.destination = params[:destination]
-    tour.full_plan = params[:full_plan]
-    tour.image_path = "img1.jpg"
-    tour.save
-    redirect_to groupTours_path
+    if tour.save
+      tour.image.attach(params[:tour][:image])
+      flash[:success] = "Event Successfully created"
+      redirect_to groupTours_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  def agency_params
+    params.require(:tour).permit(:title, :departure_date, :duration,:budget,:destination,:full_plan,:image,inclusions_attributes: [:id, :service,:_destroy] )
   end
 
   def edit_agency_profile
@@ -48,27 +49,34 @@ class HomeController < ApplicationController
   end
 
   def edit_agency_event
-    @tour = Tour.find(params[:tour_id])
+    @tour = Tour.find(params[:id])
   end
 
   def save_edit_agency_changes
-    tour = Tour.find(params[:tour_id])
-    tour.title = params[:title]
-    tour.agency = Agency.find(current_agency.id)
-    tour.departure_date = params[:date]
-    tour.duration = params[:days]
-    tour.budget = params[:price]
-    tour.destination = params[:destination]
-    tour.full_plan = params[:full_plan]
-    tour.image_path = "img1.jpg"
-    tour.save
+    tour = Tour.find(params[:tour][:tour_id])
 
-    redirect_to all_agency_tours_path
+    if tour.update_attributes(agency_params)
+      flash[:success] = "Successfully updated"
+      redirect_to all_agency_tours_path
+    else
+      redirect_to root_path
+    end
+
+    # tour.title = params[:title]
+    # tour.agency = Agency.find(current_agency.id)
+    # tour.departure_date = params[:date]
+    # tour.duration = params[:days]
+    # tour.budget = params[:price]
+    # tour.destination = params[:destination]
+    # tour.full_plan = params[:full_plan]
+    # tour.save
   end
 
   def delete_agency_tour
     tour = Tour.find(params[:tour_id])
-    tour.delete
+    tour.image.purge
+    tour.destroy
+    flash[:warning] = "Successfully deleted"
     redirect_to all_agency_tours_path
   end
 
@@ -109,6 +117,7 @@ class HomeController < ApplicationController
     else
       agency.update(about: new_about)
     end
+    flash[:success] = "Successfully updated"
     redirect_to agency_profile_path
   end
 
@@ -120,11 +129,33 @@ class HomeController < ApplicationController
     if(!new_pass.eql?"" and !confirm_pass.eql?"")
       if new_pass.eql? confirm_pass
         agency.update(password: new_pass)
+        flash[:success] = "Password Updated Successfully"
       end
     else
 
     end
     redirect_to root_path
+  end
+
+  def add_comment
+    # render plain: params[:comment][:comment].inspect
+    @tour = Tour.find_by(id:params[:comment][:id])
+    if session[:current_agency_id].present?
+      agency = Agency.find(session[:current_agency_id])
+      Comment.create(comment:params[:comment][:comment],tour:@tour,agency_id:agency.id)
+    elsif session[:current_user_id].present?
+      user = User.find(session[:current_user_id])
+      Comment.create(comment:params[:comment][:comment],tour:@tour,user_id:user.id)
+    end
+    flash[:success]= "Comment Successfully Added"
+    redirect_to agency_single_tour_path(:tour_id =>@tour.id)
+  end
+
+  def del_comment
+    @msg = Comment.find_by(id: params[:comment_id])
+    @msg.destroy
+    flash[:danger] ="Comment Successfully Deleted"
+    redirect_to agency_single_tour_path(:tour_id =>params[:tour_id])
   end
 
 end

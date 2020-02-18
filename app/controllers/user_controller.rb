@@ -4,7 +4,7 @@ class UserController < ApplicationController
 
 
   def customizedTours
-    @tours = User_Tour.paginate(page: params[:page], per_page: 6)
+    @tours = UserTour.paginate(page: params[:page], per_page: 6)
   end
 
   def user_profile
@@ -13,11 +13,12 @@ class UserController < ApplicationController
 
 
   def user_single_tour
-    @tour = User_Tour.find(params[:tour_id])
+    @tour = UserTour.find(params[:tour_id])
+    @user_comment = UserComment.new
   end
 
   def all_user_tours
-    @tours = User_Tour.where(user_id: current_user.id).paginate(page: params[:page], per_page: 6)
+    @tours = UserTour.where(user_id: current_user.id).paginate(page: params[:page], per_page: 6)
   end
 
   def user_new_event
@@ -25,7 +26,7 @@ class UserController < ApplicationController
   end
 
   def add_user_event
-    tour = User_Tour.new
+    tour = UserTour.new
     tour.title = params[:title]
     tour.user = User.find(current_user.id)
     tour.departure_date = params[:date]
@@ -34,6 +35,7 @@ class UserController < ApplicationController
     tour.destination = params[:destination]
     tour.full_plan = params[:full_plan]
     tour.save
+    flash[:success] = "Event Successfully added"
     redirect_to all_user_tours_path
   end
 
@@ -42,11 +44,11 @@ class UserController < ApplicationController
   end
 
   def edit_user_event
-    @tour = User_Tour.find(params[:tour_id])
+    @tour = UserTour.find(params[:tour_id])
   end
 
   def save_edit_user_changes
-    tour = User_Tour.find(params[:tour_id])
+    tour = UserTour.find(params[:tour_id])
     tour.title = params[:title]
     tour.user = User.find(current_user.id)
     tour.departure_date = params[:date]
@@ -55,13 +57,14 @@ class UserController < ApplicationController
     tour.destination = params[:destination]
     tour.full_plan = params[:full_plan]
     tour.save
-
+    flash[:success] = "Event Successfully updated"
     redirect_to all_user_tours_path
   end
 
   def delete_user_tour
-    tour = User_Tour.find(params[:tour_id])
+    tour = UserTour.find(params[:tour_id])
     tour.delete
+    flash[:warning] = "Successfully deleted"
     redirect_to all_user_tours_path
   end
 
@@ -84,7 +87,7 @@ class UserController < ApplicationController
     else
       user.update(full_name: new_name)
     end
-
+    flash[:success] = "Successfully updated"
     redirect_to user_profile_path
   end
 
@@ -96,11 +99,32 @@ class UserController < ApplicationController
     if(!new_pass.eql?"" and !confirm_pass.eql?"")
       if new_pass.eql? confirm_pass
         user.update(password: new_pass)
+        flash[:success] = "Password Successfully Updated"
       end
     else
 
     end
     redirect_to root_path
+  end
+  def add_user_comment
+    # render plain: params.inspect
+    @tour = UserTour.find_by(id:params[:user_comment][:id])
+    if session[:current_agency_id].present?
+      agency = Agency.find(session[:current_agency_id])
+      UserComment.create(comment:params[:user_comment][:comment],user_tour:@tour,agency_id:agency.id)
+    elsif session[:current_user_id].present?
+      user = User.find(session[:current_user_id])
+      UserComment.create(comment:params[:user_comment][:comment],user_tour:@tour,user_id:user.id)
+    end
+    flash[:success]= "Comment Successfully Added"
+    redirect_to user_single_tour_path(:tour_id =>@tour.id)
+  end
+
+  def del_user_comment
+    @msg = UserComment.find_by(id: params[:comment_id])
+    @msg.destroy
+    flash[:danger] = "Comment Successfully Deleted"
+    redirect_to user_single_tour_path(:tour_id =>params[:tour_id])
   end
 
 end

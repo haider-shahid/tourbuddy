@@ -12,6 +12,7 @@
 //= require jquery
 //= require popper
 //= require bootstrap
+//= require cocoon
 
 // Loads all Semantic javascripts
 //= require semantic-ui
@@ -26,4 +27,22 @@ $(document).on('turbolinks:load',function(){
     {
         $(this).closest('.message').transition('fade');
     });
+
 });
+function showImage() {
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (data) {
+            var image = document.getElementById("img_prev");
+            var UpImage = document.getElementById("upload_image");
+            UpImage.style.display = "none";
+            var btn = document.getElementById("upload_image_text");
+            image.src = data.target.result;
+            image.style.display = "block";
+            btn.innerText = " Change Image";
+        };
+
+        reader.readAsDataURL(this.files[0]);
+    }
+}

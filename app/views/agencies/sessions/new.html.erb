@@ -1,26 +1,41 @@
-<h2>Log in</h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="row" style="margin-top: 5%;">
+    <div class="col-md-6">
+      <%= image_tag "welcome.png" ,class:"img-fluid" %>
     </div>
-  <% end %>
+    <div class="col-md-6 primary_font" style="margin-top: 5%;">
+      <div align="center">
+        <strong><span class="primary_color" style="font-size: larger">Welcome Back ! </span></strong><span  style="font-size:larger">Login to your Account</span>
+      </div></br>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Email</label>
+          <%= f.email_field :email, autofocus: true,:class=>"form-control validate",placeholder: "Your Email"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Password</label>
+          <%= f.password_field :password ,:class=>"form-control validate",placeholder: "Your Password"%>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+        <% if devise_mapping.rememberable? %>
+          <div class="md-form mb-4">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <%end %>
+        <div class="d-flex justify-content-center flex-wrap">
+          <%= f.submit "Login", class:"btn btn-default",style:"background-color:green;color:white;width:300px;"  %>
+          <br/>
+        </div>
+        <div style="margin-top: 5%;">
+          <%= render "agencies/shared/links" %>
+          Basic Login? <%= link_to "Login", new_user_session_path,
+                                           style:"font-weight:bold;color:green;font-style:italic"%><br />
+        </div>
+      <%end %>
+    </div>
   </div>
-<% end %>
-
-<%= render "agencies/shared/links" %>
+</div>
+<br/><br/><br/><br/>

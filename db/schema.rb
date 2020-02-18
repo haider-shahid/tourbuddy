@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191206122702) do
+ActiveRecord::Schema.define(version: 2020_01_05_154935) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "agencies", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,8 +45,30 @@ ActiveRecord::Schema.define(version: 20191206122702) do
     t.string "phone_num"
     t.text "address"
     t.text "about"
+    t.string "confirmation_token"
+    t.string "unconfirmed_email"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.index ["email"], name: "index_agencies_on_email", unique: true
     t.index ["reset_password_token"], name: "index_agencies_on_reset_password_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "agency_id"
+    t.integer "tour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_comments_on_tour_id"
+  end
+
+  create_table "inclusions", force: :cascade do |t|
+    t.string "service"
+    t.integer "tour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_inclusions_on_tour_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -36,13 +79,24 @@ ActiveRecord::Schema.define(version: 20191206122702) do
 
   create_table "tours", force: :cascade do |t|
     t.integer "agency_id"
-    t.string "image_path"
     t.integer "duration"
     t.string "destination"
     t.string "title"
     t.integer "budget"
     t.text "full_plan"
     t.date "departure_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "agency_id"
+    t.integer "user_tour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_tour_id"], name: "index_user_comments_on_user_tour_id"
   end
 
   create_table "user_tours", force: :cascade do |t|
