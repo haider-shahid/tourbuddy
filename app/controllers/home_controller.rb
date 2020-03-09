@@ -40,6 +40,32 @@ class HomeController < ApplicationController
     end
   end
 
+  def filters
+    test = params[:tour_price]
+    days = params[:days]
+    if(days == "1 Day")
+      querey_day = 2
+    elsif (days == "Less than 2 Days")
+      querey_day = 3
+    elsif(days == "Less than 3 Days")
+      querey_day = 4
+    elsif
+      querey_day = 1000000
+    end
+
+    if(test == "Less than 10,000")
+          @tours = Tour.where("budget < ?",10000).where("duration < ?",querey_day).order("created_at DESC").paginate(page: params[:page], per_page: 6)
+    elsif(test == "10,000 to 20,000")
+          @tours = Tour.where("budget between ? and ?",10000,20000).where("duration < ?",querey_day).order("created_at DESC").paginate(page: params[:page], per_page: 6)
+    elsif(test == "Greater than 20,000")
+      @tours = Tour.where("budget > ?",20000).where("duration < ?",querey_day).order("created_at DESC").paginate(page: params[:page], per_page: 6)
+    else
+      @tours = Tour.where("duration < ?",querey_day).order("created_at DESC").paginate(page: params[:page], per_page: 6)
+    end
+
+    # "Less than 10,000", "10,000 to 20,000", "Greater than 20,000"]) %>
+    # @tours = Tour.where("budget > ?",5000).order("created_at DESC").paginate(page: params[:page], per_page: 6)
+  end
   def agency_params
     params.require(:tour).permit(:title, :departure_date, :duration,:budget,:destination,:full_plan,:image,inclusions_attributes: [:id, :service,:_destroy] )
   end

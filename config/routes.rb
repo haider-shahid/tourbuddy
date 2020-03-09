@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   patch 'save_edit_agency_changes', to: 'home#save_edit_agency_changes' ,as: 'update_event'
   post 'add_comment', to: 'home#add_comment'
   get 'del_comment', to: 'home#del_comment'
+  post 'filter', to:'home#filters'
+  get 'filter', to:'home#groupTours'
 
   #-------------------------------------------------------------------------------------
 
@@ -37,5 +39,6 @@ Rails.application.routes.draw do
   get 'save_edit_user_changes', to: 'user#save_edit_user_changes'
   post 'add_user_comment', to: 'user#add_user_comment'
   get 'del_user_comment', to: 'user#del_user_comment'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
