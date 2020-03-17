@@ -16,8 +16,13 @@ class HomeController < ApplicationController
   end
 
   def agency_single_tour
-    @tour = Tour.find(params[:tour_id])
-    @comment = Comment.new
+    begin
+      @comment = Comment.new
+      @tour = Tour.find(params[:tour_id])
+    rescue ActiveRecord::RecordNotFound
+      # however you want to respond to it
+      redirect_to groupTours_path
+    end
   end
 
   def all_agency_tours

@@ -27,60 +27,28 @@
 											</div>
 											</div>
 										</div>
-								</article>
-<!--									<article class="card-group-item">-->
-<!--										<header class="card-header">-->
-<!--											<h6 class="title">Selection </h6>-->
-<!--										</header>-->
-<!--										<div class="filter-content">-->
-<!--											<div class="card-body">-->
-<!--												<div class="custom-control custom-checkbox">-->
-<!--													<span class="float-right badge badge-light round">52</span>-->
-<!--													<input type="checkbox" class="custom-control-input" id="Check1">-->
-<!--													<label class="custom-control-label" for="Check1">Northern Areas</label>-->
-<!--												</div> -->
-
-<!--												<div class="custom-control custom-checkbox">-->
-<!--													<span class="float-right badge badge-light round">132</span>-->
-<!--													<input type="checkbox" class="custom-control-input" id="Check2">-->
-<!--													<label class="custom-control-label" for="Check2">Gilgit Baltistan</label>-->
-<!--												</div> -->
-
-<!--												<div class="custom-control custom-checkbox">-->
-<!--													<span class="float-right badge badge-light round">17</span>-->
-<!--													<input type="checkbox" class="custom-control-input" id="Check3">-->
-<!--													<label class="custom-control-label" for="Check3">Swat Kalam Kalash</label>-->
-<!--												</div> -->
-
-<!--												<div class="custom-control custom-checkbox">-->
-<!--													<span class="float-right badge badge-light round">7</span>-->
-<!--													<input type="checkbox" class="custom-control-input" id="Check4">-->
-<!--													<label class="custom-control-label" for="Check4">Other</label>-->
-<!--												</div>-->
-<!--											</div> -->
-<!--										</div>-->
-<!--									</article>-->
+								  </article>
 								</div>
 							</div> <!-- col.// -->
 
 
-<%
-  id = []
-  title = []
-  destination = []
-  duration = []
-  budget = []
-  actual_tour_obj =[]
+              <%
+                id = []
+                title = []
+                destination = []
+                duration = []
+                budget = []
+                actual_tour_obj =[]
 
-  @tours.each do |tour|
-    id.push(tour.id)
-    title.push(tour.title)
-    destination.push(tour.destination)
-    duration.push(tour.duration)
-    budget.push(tour.budget)
-    actual_tour_obj.push(tour)
-  end
-%>
+                @tours.each do |tour|
+                  id.push(tour.id)
+                  title.push(tour.title)
+                  destination.push(tour.destination)
+                  duration.push(tour.duration)
+                  budget.push(tour.budget)
+                  actual_tour_obj.push(tour)
+                end
+              %>
               <div class="col">
                 <%  if id.count%2==0 %>
                   <% for i in (0..id.count-1).step(2) do %>
@@ -156,4 +124,4 @@
               </div>
             </div>
           </div>
-            <br/><br/><br/><br/>
+  <br/><br/><br/><br/>

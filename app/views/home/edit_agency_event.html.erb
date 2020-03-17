@@ -7,20 +7,21 @@
 							<div class="row col-md-12">						
 								<h3>Edit Your Event</h3>
 								<br/><br/>						
-							</div>						
-							<div class="row col-md-12">	
-								<div class="jumbotron col-md-6" align="center">
-                  <%= image_tag "upload_image.png", class:"img-fluid"%>
-<!--									<img src="images/upload_image.png" class="img-fluid">												-->
-										<div class="form-group">
-											<div class="upload-btn-wrapper">
-	  											<button class="ui secondary basic button">Upload an image</button>
-                        <%=  f.file_field :image, accept: 'image/*'%>
-<!--	  											<input type="file" name="myfile" accept="image/*" />-->
-											</div>
-										</div>																
-	  							</div>							
-							</div>											
+							</div>
+              <img id="img_prev" src="" style="display:none; height: 300px; ">
+              <br/>
+              <div class="row col-md-12">
+                <div  align="center">
+                  <%= image_tag "upload_image.png", class:"img-fluid",id:"upload_image"%>
+                  <div class="form-group">
+                    <div class="upload-btn-wrapper">
+                      <button class="ui secondary basic button" id="upload_image_text">Upload an image</button>
+                      <%=  f.file_field :image, accept: 'image/*',onchange: "showImage.call(this);",:required => true%>
+                      <!--                        <input type="file" name="image" accept="image/*" />-->
+                    </div>
+                  </div>
+                </div>
+              </div>
 							<div class="row col-md-12">
 								<h4 class="card-title"><%= image_tag "umbrella.png",style: "width:20px;height:20px;padding-bottom:1px;background-color:yellow;"%>&nbsp; Description</h4>
 							</div>

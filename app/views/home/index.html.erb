@@ -14,7 +14,11 @@
         <div class="carousel-caption">
           <h1>Love where you're going</h1>
           <p>Book experiences you will want to tell the world about</p>
-          <%= link_to "Get Started" , new_user_session_path ,class:"rounded huge ui inverted button"%>
+          <%if current_user.present? || current_agency.present?  %>
+            <%= link_to "Get Started" , groupTours_path ,class:"rounded huge ui inverted button"%>
+          <% else %>
+            <%= link_to "Get Started" , new_user_session_path ,class:"rounded huge ui inverted button"%>
+          <% end  %>
         </div>
       </div>
       <div class="carousel-item"  style="height: 550px;background: black;">
@@ -22,7 +26,11 @@
         <div class="carousel-caption">
           <h1>Love where you're going</h1>
           <p>Book experiences you will want to tell the world about</p>
-          <%= link_to "Get Started" , new_user_session_path ,class:"rounded huge ui inverted button"%>
+          <%if current_user.present? || current_agency.present?  %>
+            <%= link_to "Get Started" , groupTours_path ,class:"rounded huge ui inverted button"%>
+          <% else %>
+             <%= link_to "Get Started" , new_user_session_path ,class:"rounded huge ui inverted button"%>
+          <% end  %>
         </div>
       </div>
       <div class="carousel-item"  style="height: 550px;background: black;">
@@ -30,7 +38,11 @@
         <div class="carousel-caption">
           <h1>Love where you're going</h1>
           <p>Book experiences you will want to tell the world about</p>
-          <%= link_to "Get Started" , new_user_session_path ,class:"rounded huge ui inverted button"%>
+          <%if current_user.present? || current_agency.present?  %>
+            <%= link_to "Get Started" , groupTours_path ,class:"rounded huge ui inverted button"%>
+          <% else %>
+            <%= link_to "Get Started" , new_user_session_path ,class:"rounded huge ui inverted button"%>
+          <% end %>
         </div>
       </div>
     </div>

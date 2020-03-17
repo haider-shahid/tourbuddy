@@ -4,7 +4,7 @@ class UserController < ApplicationController
 
 
   def customizedTours
-    @tours = UserTour.paginate(page: params[:page], per_page: 6)
+    @tours = UserTour.order("created_at DESC").paginate(page: params[:page], per_page: 6)
   end
 
   def user_profile
@@ -13,12 +13,20 @@ class UserController < ApplicationController
 
 
   def user_single_tour
-    @tour = UserTour.find(params[:tour_id])
-    @user_comment = UserComment.new
+    begin
+      @tour = UserTour.find(params[:tour_id])
+      @user_comment = UserComment.new
+      if @tour.user_id != current_user.id
+        redirect_to all_user_tours_path
+      end
+    rescue ActiveRecord::RecordNotFound
+      # however you want to respond to it
+      redirect_to all_user_tours_path
+    end
   end
 
   def all_user_tours
-    @tours = UserTour.where(user_id: current_user.id).paginate(page: params[:page], per_page: 6)
+    @tours = UserTour.where(user_id: current_user.id).order("created_at DESC").paginate(page: params[:page], per_page: 6)
   end
 
   def user_new_event

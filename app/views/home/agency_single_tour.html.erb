@@ -15,18 +15,18 @@
 						</div>
 						
 						<div class="row">
-							<div class="card" style="left:0px;width:26rem;border-color:white;">
+							<div class="card" style="left:0px;width:50%;border-color:white;">
 							  <div class="card-body">
 								<h4 class="card-title"><%= image_tag "umbrella.png",style: "width:20px;height:20px;padding-bottom:1px;background-color:yellow;"%>&nbsp; Description</h4>
 								<p class="card-text" style="font-size:16px;"><span style="font-weight:bold;">Destination:</span> 
-								<em style="padding-left: 11em;"><%=@tour.destination %></em> <br/>
-								<span style="font-weight:bold;">Duration:</span><em style="padding-left: 12.4em;"><%=@tour.duration %> Days</em>
+								<em style="padding-left: 11em;float: right;"><%=@tour.destination %></em> <br/>
+								<span style="font-weight:bold;">Duration:</span><em style="padding-left: 12.4em;float: right;"><%=@tour.duration %> Days</em>
 								<br/>
-								<span style="font-weight:bold;">Package Price:</span><em style="padding-left: 8.4em;">PKR <%=@tour.budget %></em>
+								<span style="font-weight:bold;">Package Price:</span><em style="padding-left: 8.4em;float: right;">PKR <%=@tour.budget %></em>
 								<br/>
-                 <span style="font-weight:bold;">Tour Agency:</span><em style="padding-left: 7.5em;"><%=@tour.agency.title %></em>
+                 <span style="font-weight:bold;">Tour Agency:</span><em style="padding-left: 7.5em;float: right;"><%=@tour.agency.title %></em>
                  <br/>
-								<span style="font-weight:bold;">For Booking</span><em style="padding-left: 8em;"><%=@tour.agency.phone_num %></em></p>
+								<span style="font-weight:bold;">For Booking</span><em style="padding-left: 8em;float: right;"><%=@tour.agency.phone_num %></em></p>
 								
 							  </div>
 							</div>
