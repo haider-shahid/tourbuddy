@@ -1,0 +1,98 @@
+<!------------------------------------Body--------------------------------------------------------------->
+<br/><br/>
+<div class="container">
+  <h1 align="center"><%= @heading_to_display %></h1>
+  <div class="row">
+    <%
+      id = []
+      title = []
+      destination = []
+      duration = []
+      budget = []
+      actual_tour_obj =[]
+
+      @tours.each do |tour|
+        id.push(tour.id)
+        title.push(tour.title)
+        destination.push(tour.destination)
+        duration.push(tour.duration)
+        budget.push(tour.budget)
+        actual_tour_obj.push(tour)
+      end
+    %>
+    <div class="col">
+      <%  if id.count%2==0 %>
+        <% for i in (0..id.count-1).step(2) do %>
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="card" style="margin-bottom: 20px;">
+                <%= image_tag actual_tour_obj[i].image,class: "card-img-top", width:"30px",height:"200px"%>
+                <div class="card-body">
+                  <h4 class="card-title"><%=title[i] %></h4>
+                  <p class="card-text">Destination : <%=destination[i] %>
+                    <br/>Duration    : <%=duration[i] %> days
+                    <br/>Budget      : <%=budget[i] %> PKR</p>
+                  <%= link_to "View Package" ,agency_single_tour_path( :tour_id => id[i]),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+              <div class="card" >
+                <%= image_tag actual_tour_obj[i+1].image,class: "card-img-top", width:"30px",height:"200px"%>
+                <div class="card-body">
+                  <h4 class="card-title"><%=title[i+1] %></h4>
+                  <p class="card-text">Destination : <%=destination[i+1] %>
+                    <br/>Duration    : <%=duration[i+1] %> days
+                    <br/>Budget      : <%=budget[i+1] %> PKR</p>
+                  <%= link_to "View Package" ,agency_single_tour_path(:tour_id => id[i+1]),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%end %>
+      <%  else  %>
+        <% for i in (0..id.count-1).step(2) do %>
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="card" style="margin-bottom: 20px;">
+                <%= image_tag actual_tour_obj[i].image,class: "card-img-top", width:"30px",height:"200px"%>
+                <div class="card-body">
+                  <h4 class="card-title"><%=title[i] %></h4>
+                  <p class="card-text">Destination : <%=destination[i] %>
+                    <br/>Duration    : <%=duration[i] %> days
+                    <br/>Budget      : <%=budget[i] %> PKR</p>
+                  <%= link_to "View Package" ,agency_single_tour_path(:tour_id => id[i]),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
+                </div>
+              </div>
+            </div>
+            <% if(i==id.count-1)
+                 break
+               end
+            %>
+            <div class="col-lg-5 offset-lg-1">
+              <div class="card" >
+                <%= image_tag actual_tour_obj[i+1].image,class: "card-img-top", width:"30px",height:"200px"%>
+                <div class="card-body">
+                  <h4 class="card-title"><%=title[i+1] %></h4>
+                  <p class="card-text">Destination : <%=destination[i+1] %>
+                    <br/>Duration    : <%=duration[i+1] %> days
+                    <br/>Budget      : <%=budget[i+1] %> PKR</p>
+                  <%= link_to "View Package" ,agency_single_tour_path(:tour_id => id[i+1]),class: "button rounded",style:"padding-left:10px;padding-right:10px;border:1px solid #483C32;color:white;background-color:#483C32;"%>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <br/><br/>
+      <div class="container" style="margin-left: 38%;">
+        <div class="navigation">
+          <div class="pagination">
+            <%= will_paginate @tours %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/><br/><br/><br/>

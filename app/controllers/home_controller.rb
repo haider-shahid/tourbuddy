@@ -19,6 +19,7 @@ class HomeController < ApplicationController
     begin
       @comment = Comment.new
       @tour = Tour.find(params[:tour_id])
+      @fav_exist = Favourite.where(tour: @tour, user: current_user) == [] ? false : true
     rescue ActiveRecord::RecordNotFound
       # however you want to respond to it
       redirect_to groupTours_path

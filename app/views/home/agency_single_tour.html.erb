@@ -3,7 +3,7 @@
 					<br/><br/>
 
 					<div class="container">
-            <h1><%=@tour.title %></h1><br/>
+            <h1><%=@tour.title %> <%= link_to fav_text,favourites_update_path(tour: @tour), class:"btn btn-primary", remote: true,style: "margin-left:30%;",id:'fav_tour' if current_user%></h1><br/>
             <div class="row">
 							<div class="card" style="left:0px;width:45rem;">
                 <% if @tour.image.attached? %>

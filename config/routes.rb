@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'favourites/update'
   devise_for :agencies,path: 'agencies', controllers: {
       sessions: 'agencies/sessions',confirmations: 'agencies/confirmations',
       registrations: 'agencies/registrations',passwords: 'agencies/passwords'
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   get 'save_edit_user_changes', to: 'user#save_edit_user_changes'
   post 'add_user_comment', to: 'user#add_user_comment'
   get 'del_user_comment', to: 'user#del_user_comment'
+  get 'user_fav_tour', to:'favourites#view_all'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

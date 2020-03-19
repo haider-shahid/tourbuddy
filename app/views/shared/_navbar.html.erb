@@ -38,6 +38,8 @@
                   <i class="plus icon"></i><%= link_to('Request Customized Event', user_new_event_path) %></div>
                 <div class="item">
                   <i class="cog icon"></i><%= link_to('User Profile', user_profile_path) %></div>
+                <div class="item">
+                  <i class="star outline icon"></i><%= link_to('Your Favourites', user_fav_tour_path) %></div>
                 <div class="divider"></div>
                 <div class="item">
                   <i class="sign out alternate icon"></i><%= link_to('Logout', destroy_user_session_path, method: :delete,style: "color:black;", data: { confirm: 'Are you sure?' }) %></div>
